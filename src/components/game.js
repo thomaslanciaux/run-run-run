@@ -1,6 +1,6 @@
 import { Suspense } from 'react';
 import { Canvas } from '@react-three/fiber';
-import { Loader } from '@react-three/drei';
+import { Loader, Stats } from '@react-three/drei';
 
 import World from '@/components/world';
 import Player from '@/components/player';
@@ -19,6 +19,7 @@ const Game = () => {
           fov: 50
         }}
       >
+        <Stats />
         <MovingItem>
           <mesh
             castShadow
