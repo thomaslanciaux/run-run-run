@@ -1,6 +1,7 @@
 import { Suspense } from 'react';
 import { Canvas } from '@react-three/fiber';
-import { Grid, ContactShadows, Environment, Loader } from '@react-three/drei';
+import { Loader } from '@react-three/drei';
+
 import World from '@/components/world';
 import Player from '@/components/player';
 import MovingItem from '@/components/movingItem';
@@ -31,8 +32,8 @@ const Game = () => {
           </mesh>
         </MovingItem>
         <Suspense fallback={null}>
-          <World />
           <Player />
+          <World />
         </Suspense>
       </Canvas>
       <Loader />
