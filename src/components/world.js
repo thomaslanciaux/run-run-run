@@ -10,7 +10,7 @@ const World = () => {
         cellSize={0.5}
         cellThickness={1}
         sectionSize={4}
-        cellColor="gray"
+        cellColor="#999999"
         sectionColor="white"
         fadeDistance={50}
         fadeStrength={2}

@@ -10,7 +10,7 @@ const Game = () => {
   return (
     <div className={`
         md:flex h-full items-center justify-center 
-        bg-gradient-to-b from-blue-300 to-blue-400
+        bg-gradient-to-b from-blue-400 to-blue-500
     `}>
       <Canvas
         shadows
@@ -19,7 +19,7 @@ const Game = () => {
           fov: 50
         }}
       >
-        <Stats />
+        <Stats style={2} />
         <MovingItem>
           <mesh
             castShadow
