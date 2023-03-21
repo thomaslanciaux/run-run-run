@@ -1,30 +1,11 @@
-import { useRef, Suspense } from 'react';
-import { Canvas, useFrame } from '@react-three/fiber';
-import {
-  Grid,
-  ContactShadows,
-  Environment,
-  Loader,
-} from '@react-three/drei';
+import { Suspense } from 'react';
+import { Canvas } from '@react-three/fiber';
+import { Grid, ContactShadows, Environment, Loader } from '@react-three/drei';
+import World from '@/components/world';
 import Player from '@/components/player';
+import MovingItem from '@/components/movingItem';
 
-const MovingItem = (props) => {
-  const ref = useRef();
-
-  useFrame((_state, delta) => {
-    ref.current.position.z -= delta * 15;
-
-    if (ref.current.position.z <= -30) {
-      ref.current.position.z = 30;
-    }
-  });
-
-  return (
-    <group ref={ref}>{props.children}</group>
-  );
-};
-
-export default function Game() {
+const Game = () => {
   return (
     <div className={`
         md:flex h-full items-center justify-center 
@@ -37,8 +18,6 @@ export default function Game() {
           fov: 50
         }}
       >
-        <fog attach="fog" args={['#93c5fd', 25, 30]} />
-        <Environment preset="apartment" />
         <MovingItem>
           <mesh
             castShadow
@@ -52,12 +31,13 @@ export default function Game() {
           </mesh>
         </MovingItem>
         <Suspense fallback={null}>
+          <World />
           <Player />
-          <ContactShadows scale={[32, 32]} opacity={0.5} />
-          <Grid args={[200, 200]} cellSize={0.5} cellThickness={1} sectionSize={4} cellColor="gray" sectionColor="white" fadeDistance={50} fadeStrength={2} />
         </Suspense>
       </Canvas>
       <Loader />
     </div>
   );
 };
+
+export default Game;

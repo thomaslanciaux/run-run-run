@@ -11,7 +11,7 @@ const poppins = Poppins({
   subsets: ['latin'],
 });
 
-export default function Home() {
+const CryptoRunner = () => {
   return (
     <>
       <Head>
@@ -25,4 +25,6 @@ export default function Home() {
       </main>
     </>
   )
-}
+};
+
+export default CryptoRunner;
