@@ -43,12 +43,16 @@ const Player = () => {
   });
 
   return (
-    <group ref={runner}>
+    <group ref={runner} position={[0, 0, -4]}>
       <Bot
-        scale={0.5}
-        position={[0, 0, -4]}
+        scale={0.3}
+        position={[0, 0, 0]}
         isJumping={isJumping}
       />
+      <mesh position={[0, 0.5, 0]} castShadow={false}>
+        <boxGeometry attach="geometry" args={[1, 1, 1]} />
+        <meshBasicMaterial color="white" wireframe />
+      </mesh>
     </group>
   );
 };

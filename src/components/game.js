@@ -14,7 +14,7 @@ const Game = () => {
       <Canvas
         shadows
         camera={{
-          position: [-8, 4, -10],
+          position: [-8, 4, -8],
           fov: 50
         }}
       >

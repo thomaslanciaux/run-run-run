@@ -1,4 +1,4 @@
-import { Grid, ContactShadows, Environment } from '@react-three/drei';
+import { Grid, ContactShadows, Environment, Stars, Sky } from '@react-three/drei';
 
 const World = () => {
   return (
