@@ -1,5 +1,5 @@
 import dynamic from 'next/dynamic';
-import { Poppins } from '@next/font/google';
+import { Poppins } from 'next/font/google';
 import Head from 'next/head';
 
 const Game = dynamic(() => import('@/components/game'), {

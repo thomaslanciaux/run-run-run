@@ -4,7 +4,7 @@ const World = () => {
   return (
     <>
       <fog attach="fog" args={['#93c5fd', 25, 30]} />
-      <Environment preset="apartment" />
+      <Environment preset="warehouse" />
       <Grid
         args={[200, 200]}
         cellSize={0.5}

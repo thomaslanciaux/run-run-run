@@ -1,7 +1,6 @@
 import { Suspense } from 'react';
 import { Canvas } from '@react-three/fiber';
 import { Loader, Stats } from '@react-three/drei';
-
 import World from '@/components/world';
 import Player from '@/components/player';
 import MovingItem from '@/components/movingItem';
@@ -9,8 +8,8 @@ import MovingItem from '@/components/movingItem';
 const Game = () => {
   return (
     <div className={`
-        md:flex h-full items-center justify-center 
-        bg-gradient-to-b from-blue-400 to-blue-500
+      md:flex h-full items-center justify-center
+      bg-gradient-to-b from-blue-400 to-blue-500
     `}>
       <Canvas
         shadows
@@ -29,7 +28,11 @@ const Game = () => {
               attach="geometry"
               args={[1, 1, 1]}
             />
-            <meshStandardMaterial />
+            <meshStandardMaterial
+              roughness={0.2}
+              metalness={0.3}
+              color="#ffffff"
+            />
           </mesh>
         </MovingItem>
         <Suspense fallback={null}>

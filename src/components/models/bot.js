@@ -13,11 +13,10 @@ const Bot = (props) => {
       actions[action].stop();
     };
     actions[currentAction].play();
-    mixer.timeScale = 1.2;
+    mixer.timeScale = isJumping ? 1 : 1.4;
   }, [actions, mixer, isJumping]);
 
-  return (
-    <group ref={group} {...props} dispose={null}>
+  return ( <group ref={group} {...props} dispose={null}>
       <group name="Sketchfab_Scene">
         <group name="Sketchfab_model" rotation={[-Math.PI / 2, 0, 0]} scale={0.02}>
           <group name="fbx_mergefbx" rotation={[Math.PI / 2, 0, 0]}>
