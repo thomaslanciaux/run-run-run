@@ -29,7 +29,10 @@ const Game = () => {
   }, [gameOver, movingItem, score, isFocused])
 
   useEffect(() => {
-    if (!isFocused) setIsPlaying(false);
+    if (!isFocused) {
+      setGameOver(true);
+      setIsPlaying(false);
+    }
   }, [isFocused]);
 
   return (
