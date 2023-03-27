@@ -41,7 +41,10 @@ const Game = () => {
       bg-gradient-to-b from-blue-400 to-blue-500
     `}>
       {!isPlaying && (
-        <div className="absolute top-0 left-0 h-full w-full grid gap-4 items-center justify-center text-white z-10 bg-blue-400">
+        <div className="
+          absolute top-0 left-0 h-full w-full grid gap-4 items-center
+          justify-center text-white z-10 bg-gradient-to-b from-blue-400 to-blue-500
+        ">
           <div
             onClick={() => {
               setIsPlaying(true);
@@ -69,7 +72,7 @@ const Game = () => {
           fov: 50
         }}
       >
-        <Stats style={2} />
+        {isPlaying && <Stats />}
         <MovingItem
           player={player}
           isPlaying={isPlaying}
