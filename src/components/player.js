@@ -2,8 +2,9 @@ import { useFrame } from '@react-three/fiber';
 import { useRef, useEffect, useState } from 'react';
 import Bot from '@/components/models/bot';
 
-const Player = () => {
+const Player = ({ setScore, setPlayer }) => {
   const runner = useRef();
+  setPlayer(runner);
   const [isJumping, setIsJumping] = useState(false);
   let velocity = 0;
 
@@ -20,12 +21,10 @@ const Player = () => {
     document.addEventListener('touchend', () => setIsJumping(false));
 
     return () => {
-      ['keydown', 'touchstart'].forEach(event =>
-        document.removeEventListener(event, () => setIsJumping(true))
-      );
-      ['keyup', 'touchend'].forEach(event =>
-        document.removeEventListener(event, () => setIsJumping(false))
-      );
+      document.removeEventListener('keydown', e => keyboardEvent(e, true));
+      document.removeEventListener('keyup', e => keyboardEvent(e, false));
+      document.removeEventListener('touchstart', () => setIsJumping(true));
+      document.removeEventListener('touchend', () => setIsJumping(false));
     };
   });
 
@@ -33,14 +32,13 @@ const Player = () => {
     if (isJumping && runner.current.position.y == 0.0) {
       velocity = 30;
     }
-    if (!isJumping) {
-      velocity = -20;
-    }
     const acceleration = -170 * delta;
     runner.current.position.y += delta * (velocity + acceleration * 0.5);
     runner.current.position.y = Math.max(runner.current.position.y, 0.0);
     velocity = Math.max(velocity + acceleration, -100);
   });
+
+  useFrame(({clock: { elapsedTime }}) => setScore(Math.round(elapsedTime * 2) * 10));
 
   return (
     <group ref={runner} position={[0, 0, -4]}>
@@ -49,10 +47,6 @@ const Player = () => {
         position={[0, 0, 0]}
         isJumping={isJumping}
       />
-      <mesh position={[0, 0.5, 0]} castShadow={false}>
-        <boxGeometry attach="geometry" args={[1, 1, 1]} />
-        <meshBasicMaterial color="white" wireframe />
-      </mesh>
     </group>
   );
 };
