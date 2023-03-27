@@ -1,24 +1,25 @@
 import { useRef } from 'react';
 import { useFrame } from '@react-three/fiber';
 
-const MovingItem = ({ player, setCollision, children }) => {
+const MovingItem = ({ player, isPlaying, setIsPlaying, setGameOver, children }) => {
   const ref = useRef();
 
   useFrame((_state, delta) => {
-    console.log(player?.current?.position.y >= 1);
-
+    if (!isPlaying) return;
     ref.current.position.z -= delta * 15;
 
     if (ref.current.position.z <= -30) {
       ref.current.position.z = 30;
-      setCollision(false);
     }
 
     if (
-      ref.current.position.z <= -23.5 &&
-      ref.current.position.z > -24.5 &&
+      ref.current.position.z <= -3.5 &&
+      ref.current.position.z > -4 &&
       player?.current?.position.y <= 1
-    ) setCollision(true);
+    ) {
+      setIsPlaying(false);
+      setGameOver(true);
+    }
   });
 
   return (
