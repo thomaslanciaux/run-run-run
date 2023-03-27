@@ -15,6 +15,7 @@ const MovingItem = ({
 
   useFrame((_state, delta) => {
     if (!isPlaying) return;
+
     ref.current.position.z -= delta * 15;
 
     if (ref.current.position.z <= -30) {
@@ -33,7 +34,7 @@ const MovingItem = ({
 
   useFrame(({clock}) => {
     if (isPlaying) {
-      setScore(Math.round(clock.elapsedTime * 4) * 10)
+      setScore(Math.round(clock.elapsedTime * 2) * 10)
     } else {
       clock.elapsedTime = 0;
     }

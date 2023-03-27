@@ -11,11 +11,26 @@ const Game = () => {
   const [movingItem, setMovingItem] = useState(null);
   const [isPlaying, setIsPlaying] = useState(false);
   const [gameOver, setGameOver] = useState(false);
+  const [isFocused, setIsFocused] = useState(true);
+
+  useEffect(() => {
+    window.addEventListener('focus', () => setIsFocused(true));
+    window.addEventListener('blur', () => setIsFocused(false));
+
+    return () => {
+      window.removeEventListener('focus', () => setIsFocused(true));
+      window.addEventListener('blur', () => setIsFocused(false));
+    };
+  }, [setIsFocused]);
 
   useEffect(() => {
     if (!gameOver) return;
     movingItem.current.position.z = -30;
-  }, [gameOver, movingItem, score])
+  }, [gameOver, movingItem, score, isFocused])
+
+  useEffect(() => {
+    if (!isFocused) setIsPlaying(false);
+  }, [isFocused]);
 
   return (
     <div className={`
