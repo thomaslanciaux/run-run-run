@@ -1,4 +1,4 @@
-import { Suspense, useState } from 'react';
+import { Suspense, useState, useEffect } from 'react';
 import { Canvas } from '@react-three/fiber';
 import { Loader, Stats } from '@react-three/drei';
 import World from '@/components/world';
@@ -8,8 +8,14 @@ import MovingItem from '@/components/movingItem';
 const Game = () => {
   const [score, setScore] = useState(0);
   const [player, setPlayer] = useState(null);
+  const [movingItem, setMovingItem] = useState(null);
   const [isPlaying, setIsPlaying] = useState(false);
   const [gameOver, setGameOver] = useState(false);
+
+  useEffect(() => {
+    if (!gameOver) return;
+    movingItem.current.position.z = -30;
+  }, [gameOver, movingItem])
 
   return (
     <div className={`
@@ -32,6 +38,7 @@ const Game = () => {
               isPlaying={isPlaying}
               setIsPlaying={setIsPlaying}
               setGameOver={setGameOver}
+              setMovingItem={setMovingItem}
             >
               <mesh
                 castShadow

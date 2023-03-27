@@ -1,8 +1,9 @@
 import { useRef } from 'react';
 import { useFrame } from '@react-three/fiber';
 
-const MovingItem = ({ player, isPlaying, setIsPlaying, setGameOver, children }) => {
+const MovingItem = ({ player, isPlaying, setIsPlaying, setGameOver, setMovingItem, children }) => {
   const ref = useRef();
+  setMovingItem(ref);
 
   useFrame((_state, delta) => {
     if (!isPlaying) return;
