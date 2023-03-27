@@ -14,7 +14,7 @@ const MovingItem = ({ player, isPlaying, setIsPlaying, setGameOver, children }) 
 
     if (
       ref.current.position.z <= -3.8 &&
-      ref.current.position.z > -4.8 &&
+      ref.current.position.z > -4.2 &&
       player?.current?.position.y <= 1
     ) {
       setIsPlaying(false);
