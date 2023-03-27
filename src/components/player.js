@@ -2,7 +2,7 @@ import { useFrame } from '@react-three/fiber';
 import { useRef, useEffect, useState } from 'react';
 import Bot from '@/components/models/bot';
 
-const Player = ({ setScore, setPlayer }) => {
+const Player = ({ setPlayer }) => {
   const runner = useRef();
   setPlayer(runner);
   const [isJumping, setIsJumping] = useState(false);
@@ -37,8 +37,6 @@ const Player = ({ setScore, setPlayer }) => {
     runner.current.position.y = Math.max(runner.current.position.y, 0.0);
     velocity = Math.max(velocity + acceleration, -100);
   });
-
-  useFrame(({clock: { elapsedTime }}) => setScore(Math.round(elapsedTime * 2) * 10));
 
   return (
     <group ref={runner} position={[0, 0, -4]}>

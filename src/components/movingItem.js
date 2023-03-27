@@ -1,7 +1,15 @@
 import { useRef } from 'react';
 import { useFrame } from '@react-three/fiber';
 
-const MovingItem = ({ player, isPlaying, setIsPlaying, setGameOver, setMovingItem, children }) => {
+const MovingItem = ({
+  player,
+  isPlaying,
+  setIsPlaying,
+  setGameOver,
+  setMovingItem,
+  setScore,
+  children
+}) => {
   const ref = useRef();
   setMovingItem(ref);
 
@@ -16,10 +24,18 @@ const MovingItem = ({ player, isPlaying, setIsPlaying, setGameOver, setMovingIte
     if (
       ref.current.position.z <= -3.8 &&
       ref.current.position.z > -4.2 &&
-      player?.current?.position.y <= 1
+      player?.current?.position.y <= 1.2
     ) {
       setIsPlaying(false);
       setGameOver(true);
+    }
+  });
+
+  useFrame(({clock}) => {
+    if (isPlaying) {
+      setScore(Math.round(clock.elapsedTime * 4) * 10)
+    } else {
+      clock.elapsedTime = 0;
     }
   });
 
