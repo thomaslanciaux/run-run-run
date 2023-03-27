@@ -68,8 +68,8 @@ const Game = () => {
           </div>
           {gameOver && (
             <div className="flex items-center justify-between">
-              <div>Game over!</div>
-              <div>Last score: {score}</div>
+              <div>GAME OVER!</div>
+              <div>LAST SCORE: {score}</div>
             </div>
           )}
         </div>
