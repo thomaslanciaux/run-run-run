@@ -1,6 +1,6 @@
 import { useFrame } from '@react-three/fiber';
 import { useRef, useEffect, useState } from 'react';
-import Bot from '@/components/models/bot';
+import Timmy from '@/components/models/timmy';
 
 const Player = ({ setPlayer }) => {
   const runner = useRef();
@@ -40,8 +40,8 @@ const Player = ({ setPlayer }) => {
 
   return (
     <group ref={runner} position={[0, 0, -4]}>
-      <Bot
-        scale={0.3}
+      <Timmy
+        scale={0.8}
         position={[0, 0, 0]}
         isJumping={isJumping}
       />

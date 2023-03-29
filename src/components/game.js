@@ -40,7 +40,7 @@ const Game = () => {
   return (
     <div className={`
       md:flex h-full items-center justify-center
-      bg-gradient-to-b from-blue-400 to-blue-500
+      bg-gradient-to-b from-blue-200 to-blue-400
     `}>
       {!isPlaying && (
         <Screen
@@ -60,7 +60,11 @@ const Game = () => {
         camera={{ position: [-8, 4, -8], fov: 50 }}
       >
         {isPlaying && <Stats />}
-        <GameState setScore={setScore} isPlaying={isPlaying} />
+        <ambientLight intensity={0.5} />
+        <GameState
+          setScore={setScore}
+          isPlaying={isPlaying}
+        />
         <MovingItem
           player={player}
           isPlaying={isPlaying}
@@ -72,7 +76,7 @@ const Game = () => {
             castShadow
             position={[0, 0.5, 0]}
           >
-            <boxGeometry attach="geometry" args={[1, 1, 1]} />
+            <boxGeometry castShadow attach="geometry" args={[1, 1, 1]} />
             <meshStandardMaterial
               roughness={0.2}
               metalness={0.3}
