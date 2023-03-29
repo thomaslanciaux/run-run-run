@@ -40,7 +40,7 @@ const Game = () => {
   return (
     <div className={`
       md:flex h-full items-center justify-center
-      bg-gradient-to-b from-blue-200 to-blue-400
+      bg-gradient-to-b from-blue-400 to-amber-100
     `}>
       {!isPlaying && (
         <Screen
@@ -52,7 +52,9 @@ const Game = () => {
           setScore={setScore}
         />
       )}
-      <div className="absolute top-0 right-0 p-4 text-white font-bold">
+      <div className="
+        absolute top-0 right-0 p-4 text-white font-bold text-xl
+      ">
         {score}
       </div>
       <Canvas
@@ -90,7 +92,7 @@ const Game = () => {
           <Player setPlayer={setPlayer} isPlaying={isPlaying} />
           <World />
         </Suspense>
-        <CameraShake />
+        <CameraShake intensity={0.3} />
       </Canvas>
       <Loader />
     </div>

@@ -16,7 +16,7 @@ const Player = ({ setPlayer, isPlaying }) => {
   };
 
   useEffect(() => {
-    document.addEventListener('keypress', e => keyboardEvent(e, true));
+    document.addEventListener('keydown', e => keyboardEvent(e, true));
     document.addEventListener('keyup', e => keyboardEvent(e, false));
     document.addEventListener('touchstart', () => setIsJumping(true));
     document.addEventListener('touchend', () => setIsJumping(false));
@@ -33,10 +33,10 @@ const Player = ({ setPlayer, isPlaying }) => {
     if (!isPlaying) return velocity = 0;
 
     if (isJumping && runner.current.position.y == 0.0) {
-      velocity = 30;
+      velocity = 20;
     }
 
-    const acceleration = -170 * delta;
+    const acceleration = -100 * delta;
     runner.current.position.y += delta * (velocity + acceleration * 0.5);
     runner.current.position.y = Math.max(runner.current.position.y, 0.0);
     velocity = Math.max(velocity + acceleration, -100);
