@@ -74,9 +74,10 @@ const Game = () => {
         >
           <mesh
             castShadow
+            receiveShadow 
             position={[0, 0.5, 0]}
           >
-            <boxGeometry castShadow attach="geometry" args={[1, 1, 1]} />
+            <boxGeometry args={[1, 1, 1]} />
             <meshStandardMaterial
               roughness={0.2}
               metalness={0.3}

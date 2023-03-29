@@ -1,4 +1,4 @@
-import { ContactShadows, Environment } from '@react-three/drei';
+import { SoftShadows, Environment } from '@react-three/drei';
 
 const World = () => {
   return (
@@ -20,7 +20,7 @@ const World = () => {
         <planeGeometry args={[10, 200]} />
         <shadowMaterial opacity={0.1} />
       </mesh>
-      <ContactShadows scale={[32, 32]} opacity={0.2} />
+      <SoftShadows samples={20} />
     </>
   );
 };
