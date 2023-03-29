@@ -62,6 +62,7 @@ const Game = () => {
         {isPlaying && <Stats />}
         <ambientLight intensity={0.5} />
         <GameState
+          score={score}
           setScore={setScore}
           isPlaying={isPlaying}
         />
