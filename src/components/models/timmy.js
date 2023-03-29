@@ -7,13 +7,13 @@ const Timmy = (props) => {
   const { actions, mixer } = useAnimations(animations, group)
   const { isJumping } = props;
 
-  console.log(actions);
   useEffect(() => {
     const currentAction = isJumping ? 'JUMP' : 'RUN';
     for (const action in actions) {
       actions[action].stop();
     };
     actions[currentAction].play();
+    mixer.timeScale = isJumping ? 1 : 1.4;
   }, [actions, mixer, isJumping]);
 
   return (

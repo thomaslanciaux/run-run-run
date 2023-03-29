@@ -80,8 +80,8 @@ const Game = () => {
             <boxGeometry args={[1, 1, 1]} />
             <meshStandardMaterial
               roughness={0.2}
-              metalness={0.3}
-              color="#ffffff"
+              metalness={1}
+              color="gold"
             />
           </mesh>
         </MovingItem>
