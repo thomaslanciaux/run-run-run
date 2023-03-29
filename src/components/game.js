@@ -86,7 +86,7 @@ const Game = () => {
           </mesh>
         </MovingItem>
         <Suspense fallback={null}>
-          <Player setPlayer={setPlayer} />
+          <Player setPlayer={setPlayer} isPlaying={isPlaying} />
           <World />
         </Suspense>
         <CameraShake />

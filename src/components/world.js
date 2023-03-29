@@ -22,7 +22,6 @@ const World = () => {
       </mesh>
       <Cloud position={[0, 5, -5]} args={[1, 1]} scale={0.2} />
       <Cloud position={[0, 4, -7]} args={[1, 2]} scale={0.2} />
-      <Cloud position={[0, 5, -2]} args={[1, 1]} scale={0.2} />
       <SoftShadows samples={20} />
     </>
   );

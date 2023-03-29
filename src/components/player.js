@@ -2,11 +2,12 @@ import { useFrame } from '@react-three/fiber';
 import { useRef, useEffect, useState } from 'react';
 import Timmy from '@/components/models/timmy';
 
-const Player = ({ setPlayer }) => {
+let velocity = 0;
+
+const Player = ({ setPlayer, isPlaying }) => {
   const runner = useRef();
   setPlayer(runner);
   const [isJumping, setIsJumping] = useState(false);
-  let velocity = 0;
 
   const keyboardEvent = (event, bool) => {
     if (event?.key !== ' ') return;
@@ -15,7 +16,7 @@ const Player = ({ setPlayer }) => {
   };
 
   useEffect(() => {
-    document.addEventListener('keydown', e => keyboardEvent(e, true));
+    document.addEventListener('keypress', e => keyboardEvent(e, true));
     document.addEventListener('keyup', e => keyboardEvent(e, false));
     document.addEventListener('touchstart', () => setIsJumping(true));
     document.addEventListener('touchend', () => setIsJumping(false));
@@ -29,13 +30,16 @@ const Player = ({ setPlayer }) => {
   });
 
   useFrame((_state, delta) => {
+    if (!isPlaying) return velocity = 0;
+
     if (isJumping && runner.current.position.y == 0.0) {
       velocity = 30;
     }
-    const acceleration = -170 * delta;
+
+    const acceleration = -150 * delta;
     runner.current.position.y += delta * (velocity + acceleration * 0.5);
     runner.current.position.y = Math.max(runner.current.position.y, 0.0);
-    velocity = Math.max(velocity + acceleration, -100);
+    velocity = Math.max(velocity + acceleration, -80);
   });
 
   return (
