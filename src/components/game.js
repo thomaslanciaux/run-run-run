@@ -1,6 +1,6 @@
 import { Suspense, useState, useEffect } from 'react';
 import { Canvas } from '@react-three/fiber';
-import { Loader, Stats } from '@react-three/drei';
+import { Loader, Stats, CameraShake } from '@react-three/drei';
 import World from '@/components/world';
 import Player from '@/components/player';
 import MovingItem from '@/components/movingItem';
@@ -57,7 +57,7 @@ const Game = () => {
       </div>
       <Canvas
         shadows
-        camera={{ position: [-8, 4, -8], fov: 50 }}
+        camera={{ position: [-8, 2, -8], fov: 50 }}
       >
         {isPlaying && <Stats />}
         <ambientLight intensity={0.5} />
@@ -89,6 +89,7 @@ const Game = () => {
           <Player setPlayer={setPlayer} />
           <World />
         </Suspense>
+        <CameraShake />
       </Canvas>
       <Loader />
     </div>
