@@ -54,7 +54,7 @@ const Game = () => {
         />
       )}
       <div className="
-        absolute bottom-0 right-0 p-4 text-orange-500 font-bold text-2xl flex items-center justify-center
+        absolute bottom-0 right-0 w-full p-4 text-orange-500 font-bold text-9xl -z-1 flex items-center justify-center opacity-20
       ">
         {score}
       </div>
@@ -93,7 +93,7 @@ const Game = () => {
           <Player setPlayer={setPlayer} isPlaying={isPlaying} />
           <World />
         </Suspense>
-        <CameraShake intensity={1} />
+        <CameraShake intensity={0.3} />
       </Canvas>
       <Loader />
     </div>

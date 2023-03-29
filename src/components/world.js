@@ -23,7 +23,7 @@ const World = () => {
       <Cloud position={[0, 5, -5]} args={[1, 1]} scale={0.4} />
       <Cloud position={[0, 4, -7]} args={[1, 2]} scale={0.2} />
       <Cloud position={[0, 4, -7]} args={[1, 2]} scale={0.2} />
-      <Cloud position={[-2, 8, 20]} args={[1, 3]} scale={0.8} />
+      <Cloud position={[-2, 10, 20]} args={[1, 3]} scale={0.8} />
       <SoftShadows samples={20} />
     </>
   );
