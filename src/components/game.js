@@ -52,11 +52,6 @@ const Game = () => {
           setScore={setScore}
         />
       )}
-      <div className="
-        absolute top-0 right-0 p-4 text-white font-bold text-xl
-      ">
-        {score}
-      </div>
       <Canvas
         shadows
         camera={{ position: [-8, 2, -8], fov: 50 }}
@@ -95,6 +90,11 @@ const Game = () => {
         <CameraShake intensity={0.3} />
       </Canvas>
       <Loader />
+      <div className="
+        absolute top-0 right-0 p-4 text-orange-600 font-bold text-xl z-1
+      ">
+        {score}
+      </div>
     </div>
   );
 };
