@@ -1,0 +1,6 @@
+{
+  "appId": "com.cryptorun.app",
+  "appName": "crypto-run",
+  "webDir": "public",
+  "bundledWebRuntime": false
+}
