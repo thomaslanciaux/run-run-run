@@ -61,7 +61,7 @@ const Game = () => {
       )}
       <Canvas
         shadows
-        camera={{ position: [-8, 2, -8], fov: 50 }}
+        camera={{ position: [-8, 2, -8], fov: 50, far: 1000 }}
       >
         {/*<Stats />*/}
         {!gameOver && (

@@ -8,7 +8,7 @@ export default function GameoverScreen({ resetGame, score }) {
       <p className="text-xl">Last score: {score}</p>
       <button
         onClick={() => resetGame()}
-        className="bg-white text-black px-8 py-4 rounded-full"
+        className="bg-white/80 hover:bg-white text-black px-8 py-4 rounded-full transition"
       >
         RESTART
       </button>

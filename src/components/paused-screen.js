@@ -7,7 +7,7 @@ export default function PausedScreen({ setIsPaused }) {
       <h1 className="text-7xl">PAUSED</h1>
       <button
         onClick={() => setIsPaused(false)}
-        className="bg-white text-black px-8 py-4 rounded-full"
+        className="bg-white/80 hover:bg-white text-black px-8 py-4 rounded-full transition"
       >
         CONTINUE
       </button>

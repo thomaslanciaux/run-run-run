@@ -1,6 +1,22 @@
+import * as POSTPROCESSING from "postprocessing"
+import { useEffect } from 'react';
+import { useThree } from '@react-three/fiber';
 import { Environment, Cloud } from '@react-three/drei';
+import { MotionBlurEffect, VelocityDepthNormalPass } from "realism-effects"
 
 const World = () => {
+  const { gl, scene, camera } = useThree();
+
+  useEffect(() => {
+    console.log(gl.outputEncoding);
+    const composer = new POSTPROCESSING.EffectComposer(gl)
+    const velocityDepthNormalPass = new VelocityDepthNormalPass(scene, camera)
+    composer.addPass(velocityDepthNormalPass)
+    const motionBlurEffect = new MotionBlurEffect(velocityDepthNormalPass)
+    const effectPass = new POSTPROCESSING.EffectPass(camera, motionBlurEffect);
+    composer.addPass(effectPass);
+  }, [camera, gl, scene]);
+
   return (
     <>
       <fog attach="fog" args={['#93c5fd', 25, 30]} />

@@ -11,7 +11,7 @@ export default function Screen({ resetGame }) {
       </h1>
       <button
         onClick={() => resetGame()}
-        className="bg-white text-blue-500 text-xl rounded-full px-8 py-4 font-bold max-w-md"
+        className="bg-white/80 hover:bg-white text-blue-500 text-xl rounded-full px-8 py-4 font-bold transition"
       >
         Play
       </button>
