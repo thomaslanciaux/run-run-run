@@ -25,7 +25,7 @@ const MovingItem = ({
 
     if (
       ref.current.position.z <= -3 &&
-      ref.current.position.z > -4.5 &&
+      ref.current.position.z > -4 &&
       player?.current?.position?.y <= 1 &&
       ref.current.position.x === player?.current?.position?.x
     ) {
