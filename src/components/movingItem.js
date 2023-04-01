@@ -29,7 +29,6 @@ const MovingItem = ({
       player?.current?.position?.y <= 1 &&
       ref.current.position.x === player?.current?.position?.x
     ) {
-      // setIsPlaying(false);
       setGameOver(true);
     }
   });

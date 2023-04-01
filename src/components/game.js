@@ -1,6 +1,6 @@
 import { Suspense, useState, useEffect } from 'react';
 import { Canvas } from '@react-three/fiber';
-import { Loader, Stats } from '@react-three/drei';
+import { Loader, Stats, CameraShake } from '@react-three/drei';
 import World from '@/components/world';
 import Player from '@/components/player';
 import MovingItem from '@/components/movingItem';
@@ -36,12 +36,6 @@ const Game = () => {
     setIsPaused(false);
     setGameOver(false);
   };
-
-  useEffect(() => {
-    if (gameOver) {
-      movingItem.current.position.z = -30;
-    }
-  }, [gameOver, movingItem]);
 
   useEffect(() => {
     if (!isFocused) setIsPaused(true);
