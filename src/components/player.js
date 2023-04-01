@@ -4,7 +4,7 @@ import Timmy from '@/components/models/timmy';
 
 let velocity = 0;
 
-const Player = ({ setPlayer, isPlaying }) => {
+const Player = ({ setPlayer, isPlaying, gameOver, isPaused }) => {
   const runner = useRef();
   setPlayer(runner);
   const [isJumping, setIsJumping] = useState(false);
@@ -12,7 +12,7 @@ const Player = ({ setPlayer, isPlaying }) => {
   const keyboardEvent = (event, bool) => {
     if (event?.key !== ' ') return;
     event.preventDefault();
-    setIsJumping(bool);
+    setIsJumping(!gameOver && !isPaused && bool);
   };
 
   useEffect(() => {
@@ -48,6 +48,8 @@ const Player = ({ setPlayer, isPlaying }) => {
         scale={0.8}
         position={[0, 0, 0]}
         isJumping={isJumping}
+        gameOver={gameOver}
+        isPaused={isPaused}
       />
     </group>
   );

@@ -1,20 +1,33 @@
 import { useRef, useEffect } from 'react'
 import { useGLTF, useAnimations } from '@react-three/drei'
+import * as THREE from 'three';
 
 const Timmy = (props) => {
   const group = useRef()
   const { nodes, materials, animations } = useGLTF('/models/timmy.glb')
   const { actions, mixer } = useAnimations(animations, group)
-  const { isJumping } = props;
+  const { isJumping, gameOver, isPaused } = props;
 
   useEffect(() => {
-    const currentAction = isJumping ? 'JUMP' : 'RUN';
+    actions['FALL'].setLoop(THREE.LoopOnce);
+    actions['FALL'].clampWhenFinished = true;
+    actions['RUN'].timeScale = 1.4;
+    actions['FALL'].timeScale = 2;
+  }, [actions]);
+
+  useEffect(() => {
+    const currentAction = gameOver ? 'FALL': isJumping ? 'JUMP' : 'RUN';
+
     for (const action in actions) {
       actions[action].stop();
     };
+
     actions[currentAction].play();
-    mixer.timeScale = isJumping ? 1 : 1.4;
-  }, [actions, mixer, isJumping]);
+  }, [actions, isJumping, gameOver]);
+
+  useEffect(() => {
+    mixer.timeScale = isPaused && !gameOver ? 0 : 1;
+  }, [isPaused, mixer, gameOver]);
 
   return (
     <group ref={group} {...props} dispose={null}>

@@ -5,7 +5,8 @@ import { Trail } from '@react-three/drei';
 const MovingItem = ({
   player,
   isPlaying,
-  setIsPlaying,
+  gameOver,
+  isPaused,
   setGameOver,
   setMovingItem,
   children
@@ -14,7 +15,7 @@ const MovingItem = ({
   setMovingItem(ref);
 
   useFrame((_state, delta) => {
-    if (!isPlaying) return;
+    if (!isPlaying || gameOver || isPaused) return;
 
     ref.current.position.z -= delta * 15;
 
@@ -28,7 +29,7 @@ const MovingItem = ({
       player?.current?.position?.y <= 1 &&
       ref.current.position.x === player?.current?.position?.x
     ) {
-      setIsPlaying(false);
+      // setIsPlaying(false);
       setGameOver(true);
     }
   });
