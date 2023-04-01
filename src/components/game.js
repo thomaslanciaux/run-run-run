@@ -72,7 +72,7 @@ const Game = () => {
         {/*<Stats />*/}
         {!gameOver && (
           <Text
-            position={[-2, 3, 5]}
+            position={[0, 3, 5]}
             rotation={[0, Math.PI, 0]}
           >
             {score}
