@@ -15,9 +15,7 @@ const MovingItem = ({
   setMovingItem(ref);
 
   useFrame(({ clock }, delta) => {
-    if (!isPlaying || gameOver) return;
-
-    isPaused ? clock.stop() : clock.start();
+    if (!isPlaying || gameOver || isPaused) return;
     
     ref.current.position.z -= (delta * 15);
 

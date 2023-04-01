@@ -8,6 +8,7 @@ export default function GameState({
   isPaused
 }) {
   useFrame(({clock}, delta) => {
+    isPaused ? clock.stop() : clock.start();
     if (isPlaying && !gameOver && !isPaused) {
       setScore(Math.round(score += delta * 100))
     } else {

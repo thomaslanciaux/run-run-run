@@ -37,12 +37,6 @@ const Game = () => {
     setGameOver(false);
   };
 
-  // useEffect(() => {
-  //   if (gameOver) {
-  //     movingItem.current.position.z = -30;
-  //   }
-  // }, [gameOver, movingItem]);
-
   useEffect(() => {
     if (!isFocused) setIsPaused(true);
   }, [isFocused]);
