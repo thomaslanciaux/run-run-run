@@ -78,7 +78,6 @@ const Game = () => {
           setScore={setScore}
           gameOver={gameOver}
           isPlaying={isPlaying}
-          isPaused={isPaused}
         />
         <MovingItem
           player={player}

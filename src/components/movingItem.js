@@ -1,10 +1,8 @@
 import { useRef } from 'react';
 import { useFrame } from '@react-three/fiber';
-import { Trail } from '@react-three/drei';
 
 const MovingItem = ({
   player,
-  isPlaying,
   gameOver,
   isPaused,
   setGameOver,
@@ -15,8 +13,11 @@ const MovingItem = ({
   setMovingItem(ref);
 
   useFrame(({ clock }, delta) => {
-    if (!isPlaying || gameOver || isPaused) return;
-    
+
+    if (gameOver) return;
+
+    isPaused ? clock.stop() : clock.start();
+
     ref.current.position.z -= (delta * 15);
 
     if (ref.current.position.z <= -30) {
@@ -25,7 +26,7 @@ const MovingItem = ({
 
     if (
       ref.current.position.z <= -3 &&
-      ref.current.position.z > -5 &&
+      ref.current.position.z > -5.2 &&
       player?.current?.position?.y <= 1 &&
       ref.current.position.x === player?.current?.position?.x
     ) {

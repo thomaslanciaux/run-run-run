@@ -5,11 +5,10 @@ export default function GameState({
   gameOver,
   setScore,
   score,
-  isPaused
 }) {
+
   useFrame(({clock}, delta) => {
-    isPaused ? clock.stop() : clock.start();
-    if (isPlaying && !gameOver && !isPaused) {
+    if (isPlaying && !gameOver) {
       setScore(Math.round(score += delta * 100))
     } else {
       clock.elapsedTime = 0;
