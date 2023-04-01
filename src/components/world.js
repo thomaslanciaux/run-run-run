@@ -1,4 +1,4 @@
-import { SoftShadows, Environment, Cloud } from '@react-three/drei';
+import { Environment, Cloud } from '@react-three/drei';
 
 const World = () => {
   return (
@@ -20,15 +20,12 @@ const World = () => {
         <planeGeometry args={[10, 200]} />
         <shadowMaterial opacity={0.1} />
       </mesh>
-      {/*
       <group position={[3, 0, 0]}>
         <Cloud position={[0, 5, -5]} args={[1, 1]} scale={0.4} />
         <Cloud position={[0, 4, -7]} args={[1, 2]} scale={0.2} />
         <Cloud position={[0, 4, -7]} args={[1, 2]} scale={0.2} />
         <Cloud position={[0, 10, 20]} args={[1, 3]} scale={0.8} />
       </group>
-      */}
-      <SoftShadows samples={20} />
     </>
   );
 };

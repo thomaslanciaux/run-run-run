@@ -35,14 +35,7 @@ const MovingItem = ({
 
   return (
     <group ref={ref}>
-      <Trail
-        width={1}
-        length={3}
-        color="white"
-        attenuation={(t) => t * t}
-      >
-        {children}
-      </Trail>
+      {children}
     </group>
   );
 };
