@@ -8,8 +8,6 @@ const Timmy = (props) => {
   const { actions, mixer } = useAnimations(animations, group)
   const { isJumping, gameOver, isPaused } = props;
 
-  console.log(actions);
-
   useEffect(() => {
     actions['DEAD'].setLoop(THREE.LoopOnce);
     actions['DEAD'].clampWhenFinished = true;
