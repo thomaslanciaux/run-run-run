@@ -15,7 +15,7 @@ const MovingItem = ({
   setMovingItem(ref);
 
   useFrame((_state, delta) => {
-    if (!isPlaying || gameOver || isPaused) return;
+    if (!isPlaying || gameOver || isPaused) return null;
 
     ref.current.position.z -= delta * 15;
 
@@ -25,7 +25,7 @@ const MovingItem = ({
 
     if (
       ref.current.position.z <= -3 &&
-      ref.current.position.z > -4 &&
+      ref.current.position.z > -3.5 &&
       player?.current?.position?.y <= 1 &&
       ref.current.position.x === player?.current?.position?.x
     ) {
