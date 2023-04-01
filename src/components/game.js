@@ -1,6 +1,6 @@
 import { Suspense, useState, useEffect } from 'react';
 import { Canvas } from '@react-three/fiber';
-import { Loader, Stats, CameraShake } from '@react-three/drei';
+import { Loader, Stats, CameraShake, Text } from '@react-three/drei';
 import World from '@/components/world';
 import Player from '@/components/player';
 import MovingItem from '@/components/movingItem';
@@ -37,6 +37,12 @@ const Game = () => {
     setGameOver(false);
   };
 
+  // useEffect(() => {
+  //   if (gameOver) {
+  //     movingItem.current.position.z = -30;
+  //   }
+  // }, [gameOver, movingItem]);
+
   useEffect(() => {
     if (!isFocused) setIsPaused(true);
   }, [isFocused]);
@@ -59,18 +65,19 @@ const Game = () => {
       {!isPlaying && (
         <Screen resetGame={resetGame} isPaused={isPaused} />
       )}
-      {!gameOver && (
-        <div className="
-          absolute bottom-0 right-0 p-4 text-orange-500 font-bold text-2xl flex items-center justify-center
-        ">
-          {score}
-        </div>
-      )}
       <Canvas
         shadows
         camera={{ position: [-8, 2, -8], fov: 50 }}
       >
         {/*<Stats />*/}
+        {!gameOver && (
+          <Text
+            position={[-2, 3, 5]}
+            rotation={[0, Math.PI, 0]}
+          >
+            {score}
+          </Text>
+        )}
         <ambientLight intensity={0.5} />
         <GameState
           score={score}
