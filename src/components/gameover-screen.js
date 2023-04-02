@@ -1,7 +1,7 @@
 import { useGameContext } from '@/hooks/game-context';
 
-export default function GameoverScreen() {
-  const { gameOver, resetGame, score } = useGameContext();
+export default function GameoverScreen({ resetGame }) {
+  const { score, gameOver } = useGameContext();
 
   return gameOver ? (
     <div className="
@@ -9,7 +9,7 @@ export default function GameoverScreen() {
       justify-center text-white z-10 bg-black/50 text-center
     ">
       <h1 className="text-7xl">GAME OVER!</h1>
-      <p className="text-xl">Last score: {score}</p>
+      <p className="text-3xl">Last score: {score}</p>
       <button
         onClick={() => resetGame()}
         className="bg-white/80 hover:bg-white text-black px-8 py-4 rounded-full transition"

@@ -11,8 +11,19 @@ import GameoverScreen from '@/components/gameover-screen';
 import PausedScreen from '@/components/paused-screen';
 
 const Game = () => {
-  const { setIsPaused } = useGameContext();
+  const { setScore, setIsPaused, setIsPlaying, setGameOver } = useGameContext();
   const [isFocused, setIsFocused] = useState(true);
+  const [player, setPlayer] = useState(null);
+  const [movingItem, setMovingItem] = useState(null);
+
+  const resetGame = () => {
+    movingItem.current.position.z = -30;
+    player.current.position.y = 0;
+    setScore(0);
+    setIsPlaying(true);
+    setIsPaused(false);
+    setGameOver(false);
+  };
 
   useEffect(() => {
     window.addEventListener('focus', () => setIsFocused(true));
@@ -34,8 +45,8 @@ const Game = () => {
       bg-gradient-to-b from-blue-400 to-amber-100
     `}>
       <PausedScreen />
-      <GameoverScreen />
-      <StartScreen />
+      <GameoverScreen resetGame={resetGame} />
+      <StartScreen resetGame={resetGame} />
       <Canvas
         shadows
         camera={{
@@ -46,7 +57,7 @@ const Game = () => {
       >
         {/*<Stats />*/}
         <Score />
-        <MovingItem>
+        <MovingItem setMovingItem={setMovingItem} player={player}>
           <mesh
             castShadow
             receiveShadow 
@@ -61,7 +72,7 @@ const Game = () => {
           </mesh>
         </MovingItem>
         <Suspense fallback={null}>
-          <Player />
+          <Player setPlayer={setPlayer} />
           <World />
         </Suspense>
       </Canvas>

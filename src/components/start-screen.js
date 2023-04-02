@@ -1,7 +1,7 @@
 import { useGameContext } from '@/hooks/game-context';
 
-export default function StartScreen() {
-  const { resetGame, isPlaying } = useGameContext();
+export default function StartScreen({ resetGame }) {
+  const { isPlaying } = useGameContext();
 
   return !isPlaying ? (
     <div className="

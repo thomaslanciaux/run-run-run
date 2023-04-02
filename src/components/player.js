@@ -5,8 +5,8 @@ import Timmy from '@/components/models/timmy';
 
 let velocity = 0;
 
-const Player = () => {
-  const { setPlayer, isPlaying, gameOver, isPaused } = useGameContext();
+const Player = ({ setPlayer }) => {
+  const { isPlaying, gameOver, isPaused } = useGameContext();
   const [isJumping, setIsJumping] = useState(false);
   const runner = useRef();
 
@@ -23,14 +23,7 @@ const Player = () => {
     document.addEventListener('keyup', e => keyboardEvent(e, false));
     document.addEventListener('touchstart', () => setIsJumping(true));
     document.addEventListener('touchend', () => setIsJumping(false));
-
-    return () => {
-      document.removeEventListener('keydown', e => keyboardEvent(e, true));
-      document.removeEventListener('keyup', e => keyboardEvent(e, false));
-      document.removeEventListener('touchstart', () => setIsJumping(true));
-      document.removeEventListener('touchend', () => setIsJumping(false));
-    };
-  });
+  }, []); // eslint-disable-line
 
   useFrame((_state, delta) => {
     if (!isPlaying) return velocity = 0;
@@ -49,7 +42,7 @@ const Player = () => {
     <group ref={runner} position={[0, 0, -4]}>
       <Timmy
         scale={0.8}
-        position={[0, 0, 0]}
+        position={[0, gameOver ? 0.1 : 0, 0]}
         isJumping={isJumping}
         gameOver={gameOver}
         isPaused={isPaused}

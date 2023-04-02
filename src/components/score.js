@@ -7,7 +7,7 @@ export default function Score() {
 
   useFrame(({clock}, delta) => {
     if (isPlaying && !gameOver) {
-      setScore(Math.round(score + delta * 100))
+      setScore(Math.round(score + delta * 50))
     } else {
       clock.elapsedTime = 0;
     }

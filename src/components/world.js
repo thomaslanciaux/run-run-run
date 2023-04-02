@@ -32,10 +32,19 @@ const World = () => {
         shadow-mapSize-width={2048}
         shadow-bias={-0.0001}
       />
-      <mesh receiveShadow position={[0, 0, 0]} rotation-x={-Math.PI / 2}>
-        <planeGeometry args={[10, 200]} />
-        <shadowMaterial opacity={0.1} />
-      </mesh>
+      <group position={[0, -0.1, -6]} receiveShadow>
+        {[0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16].map(index => (
+          <mesh
+            key={index}
+            rotation-x={-Math.PI / 2}
+            position={[0, 0, index * 2.05]}
+            receiveShadow
+          >
+            <boxGeometry args={[10, 2, 0.2]} />
+            <meshLambertMaterial />
+          </mesh>
+        ))}
+      </group>
       <group position={[3, 0, 0]}>
         <Cloud position={[0, 5, -5]} args={[1, 1]} scale={0.4} />
         <Cloud position={[0, 4, -7]} args={[1, 2]} scale={0.2} />
