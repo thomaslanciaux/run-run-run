@@ -73,7 +73,7 @@ const Game = () => {
         </MovingItem>
         <Suspense fallback={null}>
           <Player setPlayer={setPlayer} />
-          <World />
+          <World player={player} />
         </Suspense>
       </Canvas>
       <Loader />

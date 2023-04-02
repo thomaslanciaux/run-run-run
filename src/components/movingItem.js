@@ -2,11 +2,12 @@ import { useGameContext } from '@/hooks/game-context';
 import { useRef } from 'react';
 import { useFrame } from '@react-three/fiber';
 
-const MovingItem = ({ children, setMovingItem, player }) => {
+const MovingItem = ({ children, setMovingItem, player, position, collision = true }) => {
   const ref = useRef();
   const {
     gameOver,
     isPaused,
+    isPlaying,
     setGameOver,
   } = useGameContext();
 
@@ -16,7 +17,7 @@ const MovingItem = ({ children, setMovingItem, player }) => {
 
     if (gameOver) return;
 
-    isPaused ? clock.stop() : clock.start();
+    isPaused || !isPlaying ? clock.stop() : clock.start();
 
     ref.current.position.z -= (delta * 15);
 
@@ -24,12 +25,14 @@ const MovingItem = ({ children, setMovingItem, player }) => {
       ref.current.position.z = 30;
     }
 
+    if (!collision) return;
+
     if (
       ref.current.position.z <= -3 &&
       ref.current.position.z > -5.2 &&
       player?.current?.position?.y <= 1 &&
       ref.current.position.x === player?.current?.position?.x ||
-      (ref.current.position.z < -2.5 && isPaused)
+      (ref.current.position.z < -2.5 && ref.current.position.z > -8 && isPaused)
     ) {
       setGameOver(true);
       ref.current.position.z = -3;
@@ -37,7 +40,7 @@ const MovingItem = ({ children, setMovingItem, player }) => {
   });
 
   return (
-    <group ref={ref}>
+    <group ref={ref} position={position}>
       {children}
     </group>
   );
