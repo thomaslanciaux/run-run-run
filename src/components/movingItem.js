@@ -30,7 +30,8 @@ const MovingItem = ({ children }) => {
       ref.current.position.z <= -3 &&
       ref.current.position.z > -5.2 &&
       player?.current?.position?.y <= 1 &&
-      ref.current.position.x === player?.current?.position?.x
+      ref.current.position.x === player?.current?.position?.x ||
+      (ref.current.position.z < -2.5 && isPaused)
     ) {
       setGameOver(true);
       ref.current.position.z = -3;

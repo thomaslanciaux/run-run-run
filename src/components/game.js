@@ -11,13 +11,7 @@ import GameoverScreen from '@/components/gameover-screen';
 import PausedScreen from '@/components/paused-screen';
 
 const Game = () => {
-  const {
-    isPlaying,
-    setIsPaused,
-    isPaused,
-    gameOver,
-    setPlayer,
-  } = useGameContext();
+  const { setIsPaused } = useGameContext();
   const [isFocused, setIsFocused] = useState(true);
 
   useEffect(() => {
