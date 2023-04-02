@@ -1,6 +1,7 @@
 import dynamic from 'next/dynamic';
 import { Poppins } from 'next/font/google';
 import Head from 'next/head';
+import { GameProvider } from '@/hooks/game-context';
 
 const Game = dynamic(() => import('@/components/game'), {
   ssr: false
@@ -21,7 +22,9 @@ const CryptoRunner = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main className={`${poppins.className} h-full`}>
-        <Game />
+        <GameProvider>
+          <Game />
+        </GameProvider>
       </main>
     </>
   )

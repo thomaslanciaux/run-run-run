@@ -1,13 +1,16 @@
+import { useGameContext } from '@/hooks/game-context';
 import { useFrame } from '@react-three/fiber';
 import { useRef, useEffect, useState } from 'react';
 import Timmy from '@/components/models/timmy';
 
 let velocity = 0;
 
-const Player = ({ setPlayer, isPlaying, gameOver, isPaused }) => {
-  const runner = useRef();
-  setPlayer(runner);
+const Player = () => {
+  const { setPlayer, isPlaying, gameOver, isPaused } = useGameContext();
   const [isJumping, setIsJumping] = useState(false);
+  const runner = useRef();
+
+  setPlayer(runner);
 
   const keyboardEvent = (event, bool) => {
     if (event?.key !== ' ') return;

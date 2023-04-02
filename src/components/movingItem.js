@@ -1,15 +1,17 @@
+import { useGameContext } from '@/hooks/game-context';
 import { useRef } from 'react';
 import { useFrame } from '@react-three/fiber';
 
-const MovingItem = ({
-  player,
-  gameOver,
-  isPaused,
-  setGameOver,
-  setMovingItem,
-  children
-}) => {
+const MovingItem = ({ children }) => {
   const ref = useRef();
+  const {
+    player,
+    gameOver,
+    isPaused,
+    setGameOver,
+    setMovingItem,
+  } = useGameContext();
+
   setMovingItem(ref);
 
   useFrame(({ clock }, delta) => {

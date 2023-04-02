@@ -1,21 +1,23 @@
+import { useGameContext } from '@/hooks/game-context';
 import { Suspense, useState, useEffect } from 'react';
 import { Canvas } from '@react-three/fiber';
-import { Loader, Stats, CameraShake, Text } from '@react-three/drei';
+import { Loader, Stats } from '@react-three/drei';
 import World from '@/components/world';
 import Player from '@/components/player';
 import MovingItem from '@/components/movingItem';
-import Screen from '@/components/screen';
-import GameState from '@/components/game-state';
+import Score from '@/components/score';
+import StartScreen from '@/components/start-screen';
 import GameoverScreen from '@/components/gameover-screen';
 import PausedScreen from '@/components/paused-screen';
 
 const Game = () => {
-  const [score, setScore] = useState(0);
-  const [player, setPlayer] = useState(null);
-  const [movingItem, setMovingItem] = useState(null);
-  const [isPlaying, setIsPlaying] = useState(false);
-  const [isPaused, setIsPaused] = useState(false);
-  const [gameOver, setGameOver] = useState(false);
+  const {
+    isPlaying,
+    setIsPaused,
+    isPaused,
+    gameOver,
+    setPlayer,
+  } = useGameContext();
   const [isFocused, setIsFocused] = useState(true);
 
   useEffect(() => {
@@ -28,66 +30,29 @@ const Game = () => {
     };
   });
 
-  const resetGame = () => {
-    movingItem.current.position.z = -30;
-    player.current.position.y = 0;
-    setScore(0);
-    setIsPlaying(true);
-    setIsPaused(false);
-    setGameOver(false);
-  };
-
   useEffect(() => {
     if (!isFocused) setIsPaused(true);
-  }, [isFocused]);
+  }, [isFocused, setIsPaused]);
 
   return (
     <div className={`
       md:flex h-full items-center justify-center
       bg-gradient-to-b from-blue-400 to-amber-100
     `}>
-      {isPaused && !gameOver && (
-        <PausedScreen setIsPaused={setIsPaused} />
-      )}
-      {gameOver && (
-        <GameoverScreen
-          resetGame={resetGame}
-          score={score}
-          isPaused={isPaused}
-        />
-      )}
-      {!isPlaying && (
-        <Screen resetGame={resetGame} isPaused={isPaused} />
-      )}
+      <PausedScreen />
+      <GameoverScreen />
+      <StartScreen />
       <Canvas
         shadows
-        camera={{ position: [-8, 2, -8], fov: 50, far: 1000 }}
+        camera={{
+          position: [-8, 2, -8],
+          fov: 50,
+          far: 1000
+        }}
       >
         {/*<Stats />*/}
-        {!gameOver && (
-          <Text
-            position={[0, 3, 5]}
-            rotation={[0, Math.PI, 0]}
-          >
-            {score}
-          </Text>
-        )}
-        <ambientLight intensity={0.5} />
-        <GameState
-          score={score}
-          setScore={setScore}
-          gameOver={gameOver}
-          isPlaying={isPlaying}
-        />
-        <MovingItem
-          player={player}
-          isPlaying={isPlaying}
-          setIsPlaying={setIsPlaying}
-          setGameOver={setGameOver}
-          setMovingItem={setMovingItem}
-          gameOver={gameOver}
-          isPaused={isPaused}
-        >
+        <Score />
+        <MovingItem>
           <mesh
             castShadow
             receiveShadow 
@@ -102,12 +67,7 @@ const Game = () => {
           </mesh>
         </MovingItem>
         <Suspense fallback={null}>
-          <Player
-            setPlayer={setPlayer}
-            isPlaying={isPlaying}
-            isPaused={isPaused}
-            gameOver={gameOver}
-          />
+          <Player />
           <World />
         </Suspense>
       </Canvas>

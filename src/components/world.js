@@ -8,7 +8,6 @@ const World = () => {
   const { gl, scene, camera } = useThree();
 
   useEffect(() => {
-    console.log(gl.outputEncoding);
     const composer = new POSTPROCESSING.EffectComposer(gl)
     const velocityDepthNormalPass = new VelocityDepthNormalPass(scene, camera)
     composer.addPass(velocityDepthNormalPass)
@@ -19,6 +18,7 @@ const World = () => {
 
   return (
     <>
+      <ambientLight intensity={0.5} />
       <fog attach="fog" args={['#93c5fd', 25, 30]} />
       <Environment preset="dawn" />
       <directionalLight
