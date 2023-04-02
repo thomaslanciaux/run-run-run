@@ -21,7 +21,7 @@ const Player = ({ setPlayer }) => {
   useEffect(() => {
     document.addEventListener('keydown', e => keyboardEvent(e, true));
     document.addEventListener('keyup', e => keyboardEvent(e, false));
-    document.addEventListener('touchstart', () => setIsJumping(true));
+    document.addEventListener('touchstart', () => setIsJumping(!gameOver && !isPaused && true));
     document.addEventListener('touchend', () => setIsJumping(false));
 
     return () => {

@@ -50,7 +50,7 @@ const Game = () => {
       <Canvas
         shadows
         camera={{
-          position: [-6, 3, -8],
+          position: [-12, 3, -6],
           fov: 50,
           far: 1000
         }}
@@ -75,7 +75,7 @@ const Game = () => {
         </MovingItem>
         <Suspense fallback={null}>
           <Player setPlayer={setPlayer} />
-          <World player={player} />
+          <World />
         </Suspense>
       </Canvas>
       <Loader />

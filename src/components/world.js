@@ -9,17 +9,16 @@ const OFFSET = 30;
 const FLOOR_ITEMS = 15;
 
 const MovingFloorItem = ({ children, position }) => {
-  const { gameOver, isPaused } = useGameContext();
+  const { gameOver, isPaused, isPlaying } = useGameContext();
   const ref = useRef();
 
   useFrame((_state, delta) => {
-    if (gameOver || isPaused) return;
+    if (!isPlaying || gameOver || isPaused) return;
 
     ref.current.position.z -= delta * 15;
 
     if (ref.current.position.z <= -OFFSET) {
       ref.current.position.z = OFFSET;
-      ref.current.position.y = 0;
     }
   });
 
@@ -30,7 +29,7 @@ const MovingFloorItem = ({ children, position }) => {
   );
 };
 
-const World = ({ player }) => {
+const World = () => {
   const { gl, scene, camera } = useThree();
 
   useEffect(() => {
@@ -63,7 +62,6 @@ const World = ({ player }) => {
           <MovingFloorItem
             key={index}
             position={[0, 0, -OFFSET + (index / FLOOR_ITEMS) * OFFSET * 2]}
-            player={player}
           >
             <mesh receiveShadow castShadow>
               <boxGeometry args={[0.5, 0.5, 2]} />

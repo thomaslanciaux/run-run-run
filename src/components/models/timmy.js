@@ -19,10 +19,10 @@ const Timmy = (props) => {
     const currentAction = gameOver ? 'DEAD' : isJumping ? 'JUMP' : 'RUN';
 
     for (const action in actions) {
-      actions[action].stop();
+      actions[action].stop().reset();
     };
 
-    actions[currentAction].play();
+    actions[currentAction].fadeIn().play();
   }, [actions, isJumping, gameOver]);
 
   useEffect(() => {
