@@ -23,7 +23,14 @@ const Player = ({ setPlayer }) => {
     document.addEventListener('keyup', e => keyboardEvent(e, false));
     document.addEventListener('touchstart', () => setIsJumping(true));
     document.addEventListener('touchend', () => setIsJumping(false));
-  }, []); // eslint-disable-line
+
+    return () => {
+      document.removeEventListener('keydown', e => keyboardEvent(e, true));
+      document.removeEventListener('keyup', e => keyboardEvent(e, false));
+      document.removeEventListener('touchstart', () => setIsJumping(true));
+      document.removeEventListener('touchend', () => setIsJumping(false));
+    };
+  });
 
   useFrame((_state, delta) => {
     if (!isPlaying) return velocity = 0;
@@ -42,7 +49,7 @@ const Player = ({ setPlayer }) => {
     <group ref={runner} position={[0, 0, -4]}>
       <Timmy
         scale={0.8}
-        position={[0, gameOver ? 0.1 : 0, 0]}
+        position={[0, 0, 0]}
         isJumping={isJumping}
         gameOver={gameOver}
         isPaused={isPaused}
