@@ -1,7 +1,7 @@
 import { useGameContext } from '@/hooks/game-context';
 import { Suspense, useState, useEffect } from 'react';
 import { Canvas } from '@react-three/fiber';
-import { Loader, Stats } from '@react-three/drei';
+import { Loader } from '@react-three/drei';
 import World from '@/components/world';
 import Player from '@/components/player';
 import MovingItem from '@/components/movingItem';
@@ -50,14 +50,16 @@ const Game = () => {
       <Canvas
         shadows
         camera={{
-          position: [-8, 2, -8],
+          position: [-6, 3, -8],
           fov: 50,
           far: 1000
         }}
       >
-        {/*<Stats />*/}
         <Score />
-        <MovingItem setMovingItem={setMovingItem} player={player}>
+        <MovingItem
+          setMovingItem={setMovingItem}
+          player={player}
+        >
           <mesh
             castShadow
             receiveShadow 
