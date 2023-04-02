@@ -32,7 +32,7 @@ const MovingItem = ({ children, setMovingItem, player, position, collision = tru
       ref.current.position.z > -5.2 &&
       player?.current?.position?.y <= 1 &&
       ref.current.position.x === player?.current?.position?.x ||
-      (ref.current.position.z < -2.5 && ref.current.position.z > -10 && isPaused)
+      (ref.current.position.z <= -3 && isPaused)
     ) {
       setGameOver(true);
       ref.current.position.z = -3;
