@@ -32,7 +32,7 @@ const Player = ({ setPlayer }) => {
     };
   });
 
-  useFrame((_state, delta) => {
+  useFrame(({ clock }, delta) => {
     if (!isPlaying) return velocity = 0;
 
     if (isJumping && runner.current.position.y == 0.0) {
@@ -44,7 +44,7 @@ const Player = ({ setPlayer }) => {
     runner.current.position.y = Math.max(runner.current.position.y, 0.0);
     velocity = Math.max(velocity + acceleration, -100);
 
-
+    isPaused || !isPlaying ? clock.stop() : clock.start();
   });
 
   return (

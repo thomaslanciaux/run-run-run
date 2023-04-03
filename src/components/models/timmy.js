@@ -33,7 +33,7 @@ const Timmy = (props) => {
     <group ref={group} {...props} dispose={null}>
       <group name="Armature" rotation={[Math.PI / 2, 0, 0]} scale={0.01}>
         <primitive castShadow receiveShadow object={nodes.mixamorig6Hips} />
-        <skinnedMesh castShadow receiveShadows name="Ch09" geometry={nodes.Ch09.geometry} material={materials.Ch09_body} skeleton={nodes.Ch09.skeleton} />
+        <skinnedMesh castShadow receiveShadow name="Ch09" geometry={nodes.Ch09.geometry} material={materials.Ch09_body} skeleton={nodes.Ch09.skeleton} />
       </group>
     </group>
   )

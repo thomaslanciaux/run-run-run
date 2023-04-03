@@ -9,11 +9,11 @@ const MovingItem = ({ children, position, setColliders, }) => {
   const { gameOver, isPaused, isPlaying } = useGameContext();
 
   useEffect(() => {
-    setColliders(prevState => [...prevState, ref]);
+    if (setColliders) setColliders(prevState => [...prevState, ref]);
   }, []); // eslint-disable-line
 
   useFrame(({ clock }, delta) => {
-    if (gameOver) return;
+    if (!isPlaying || gameOver || isPaused) return;
 
     isPaused || !isPlaying ? clock.stop() : clock.start();
 

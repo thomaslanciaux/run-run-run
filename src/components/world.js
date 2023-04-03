@@ -1,34 +1,13 @@
-import { useGameContext } from '@/hooks/game-context';
-import { useEffect, useRef } from 'react';
-import { useThree, useFrame } from '@react-three/fiber';
+import { useEffect } from 'react';
+import { useThree } from '@react-three/fiber';
 import { Environment, Cloud } from '@react-three/drei';
 import { MotionBlurEffect, VelocityDepthNormalPass } from 'realism-effects';
 import * as POSTPROCESSING from 'postprocessing';
+import MovingItem from '@/components/moving-item';
 
 const OFFSET = 30;
 const FLOOR_ITEMS = 15;
 const CLOUD_TEXTURE = '/textures/cloud.png';
-
-const MovingFloorItem = ({ children, position }) => {
-  const { gameOver, isPaused, isPlaying } = useGameContext();
-  const ref = useRef();
-
-  useFrame((_state, delta) => {
-    if (!isPlaying || gameOver || isPaused) return;
-
-    ref.current.position.z -= delta * 15;
-
-    if (ref.current.position.z <= -OFFSET) {
-      ref.current.position.z = OFFSET;
-    }
-  });
-
-  return (
-    <group ref={ref} position={position}>
-      {children}
-    </group>
-  );
-};
 
 const World = () => {
   const { gl, scene, camera } = useThree();
@@ -45,7 +24,7 @@ const World = () => {
   return (
     <>
       <ambientLight intensity={0.5} />
-      <fog attach="fog" args={['#93c5fd', 25, 30]} />
+      <fog args={['#93c5fd', 25, 30]} attach="fog" />
       <Environment preset="dawn" />
       <directionalLight
         castShadow
@@ -60,7 +39,7 @@ const World = () => {
       />
       <group position={[6, 0.25, 0]} receiveShadow>
         {[...Array(FLOOR_ITEMS)].map((_value, index) => (
-          <MovingFloorItem
+          <MovingItem
             key={index}
             position={[0, 0, -OFFSET + (index / FLOOR_ITEMS) * OFFSET * 2]}
           >
@@ -72,7 +51,7 @@ const World = () => {
               <boxGeometry args={[0.5, 0.5, 2]} />
               <meshLambertMaterial />
             </mesh>
-          </MovingFloorItem>
+          </MovingItem>
         ))}
       </group>
       <mesh rotation-x={-Math.PI/2} receiveShadow position={[0, 0, 0]}>
