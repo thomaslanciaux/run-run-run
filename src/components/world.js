@@ -7,6 +7,7 @@ import { MotionBlurEffect, VelocityDepthNormalPass } from "realism-effects"
 
 const OFFSET = 30;
 const FLOOR_ITEMS = 15;
+const CLOUD_TEXTURE = '/textures/cloud.png';
 
 const MovingFloorItem = ({ children, position }) => {
   const { gameOver, isPaused, isPlaying } = useGameContext();
@@ -79,10 +80,10 @@ const World = () => {
         <shadowMaterial opacity={0.1} />
       </mesh>
       <group position={[3, 0, 0]}>
-        <Cloud position={[0, 5, -5]} args={[1, 1]} scale={0.4} />
-        <Cloud position={[0, 6, -7]} args={[1, 2]} scale={0.2} />
-        <Cloud position={[0, 5, -7]} args={[1, 2]} scale={0.2} />
-        <Cloud position={[0, 10, 20]} args={[1, 3]} scale={0.8} />
+        <Cloud texture={CLOUD_TEXTURE} position={[0, 5, -5]} args={[1, 1]} scale={0.4} />
+        <Cloud texture={CLOUD_TEXTURE} position={[0, 6, -7]} args={[1, 2]} scale={0.2} />
+        <Cloud texture={CLOUD_TEXTURE} position={[0, 5, -7]} args={[1, 2]} scale={0.2} />
+        <Cloud texture={CLOUD_TEXTURE} position={[0, 10, 20]} args={[1, 3]} scale={0.8} />
       </group>
     </>
   );
