@@ -1,7 +1,7 @@
 import { useGameContext } from '@/hooks/game-context';
 import { Suspense, useState, useEffect } from 'react';
 import { Canvas } from '@react-three/fiber';
-import { Loader } from '@react-three/drei';
+import { Loader, Stats } from '@react-three/drei';
 import World from '@/components/world';
 import Player from '@/components/player';
 import MovingItem from '@/components/movingItem';
@@ -9,8 +9,11 @@ import Score from '@/components/score';
 import StartScreen from '@/components/start-screen';
 import GameoverScreen from '@/components/gameover-screen';
 import PausedScreen from '@/components/paused-screen';
+import { useRouter } from 'next/router';
 
 const Game = () => {
+  const router = useRouter();
+  console.log(router.query);
   const { setScore, setIsPaused, setIsPlaying, setGameOver } = useGameContext();
   const [isFocused, setIsFocused] = useState(true);
   const [player, setPlayer] = useState(null);
@@ -41,7 +44,7 @@ const Game = () => {
 
   return (
     <div className={`
-      md:flex h-full items-center justify-center
+      flex h-full items-center justify-center
       bg-gradient-to-b from-blue-400 to-amber-100
     `}>
       <PausedScreen />
@@ -55,6 +58,13 @@ const Game = () => {
           far: 1000
         }}
       >
+        {router.query.debug && (
+          <>
+            <Stats showPanel={0} />
+            <Stats showPanel={1} className="translate-x-24" />
+            <Stats showPanel={2} className="translate-x-48" />
+          </>
+        )}
         <Score />
         <MovingItem
           setMovingItem={setMovingItem}
