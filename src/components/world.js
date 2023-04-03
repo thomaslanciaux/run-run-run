@@ -1,9 +1,9 @@
-import * as POSTPROCESSING from "postprocessing"
 import { useGameContext } from '@/hooks/game-context';
 import { useEffect, useRef } from 'react';
 import { useThree, useFrame } from '@react-three/fiber';
 import { Environment, Cloud } from '@react-three/drei';
-import { MotionBlurEffect, VelocityDepthNormalPass } from "realism-effects"
+import { MotionBlurEffect, VelocityDepthNormalPass } from 'realism-effects';
+import * as POSTPROCESSING from 'postprocessing';
 
 const OFFSET = 30;
 const FLOOR_ITEMS = 15;
@@ -40,7 +40,7 @@ const World = () => {
     const motionBlurEffect = new MotionBlurEffect(velocityDepthNormalPass)
     const effectPass = new POSTPROCESSING.EffectPass(camera, motionBlurEffect);
     composer.addPass(effectPass);
-  }, [camera, gl, scene]);
+  }, []); //eslint-disable-line
 
   return (
     <>

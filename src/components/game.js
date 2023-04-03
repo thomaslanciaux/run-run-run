@@ -9,6 +9,7 @@ import Score from '@/components/score';
 import StartScreen from '@/components/start-screen';
 import GameoverScreen from '@/components/gameover-screen';
 import PausedScreen from '@/components/paused-screen';
+import CheckColliders from '@/components/check-colliders';
 import { useRouter } from 'next/router';
 
 const Game = () => {
@@ -16,15 +17,17 @@ const Game = () => {
   const { setScore, setIsPaused, setIsPlaying, setGameOver } = useGameContext();
   const [isFocused, setIsFocused] = useState(true);
   const [player, setPlayer] = useState(null);
-  const [movingItem, setMovingItem] = useState(null);
+  const [colliders, setColliders] = useState([]);
 
   const resetGame = () => {
-    movingItem.current.position.z = -30;
-    player.current.position.y = 0;
     setScore(0);
     setIsPlaying(true);
     setIsPaused(false);
     setGameOver(false);
+    colliders.forEach((collider, index) => {
+      collider.current.position.z = 30 - (index * 10);
+    });
+    player.current.position.y = 0;
   };
 
   useEffect(() => {
@@ -65,27 +68,23 @@ const Game = () => {
           </>
         )}
         <Score />
-        <MovingItem
-          setMovingItem={setMovingItem}
-          player={player}
-        >
-          <mesh
-            castShadow
-            receiveShadow 
-            position={[0, 0.5, 0]}
-          >
-            <boxGeometry args={[1, 1, 1]} />
-            <meshStandardMaterial
-              roughness={0.2}
-              metalness={1}
-              color="gold"
-            />
-          </mesh>
-        </MovingItem>
+        {['gold', 'hotpink', 'cyan'].map((color, index) => (
+          <MovingItem key={index} setColliders={setColliders} position={[0, 0.5, 0]}>
+            <mesh castShadow>
+              <boxGeometry args={[1, 1, 1]} />
+              <meshStandardMaterial
+                roughness={0.2}
+                metalness={1}
+                color={color}
+              />
+            </mesh>
+          </MovingItem>
+        ))}
         <Suspense fallback={null}>
           <Player setPlayer={setPlayer} />
           <World />
         </Suspense>
+        <CheckColliders colliders={colliders} player={player} />
       </Canvas>
       <Loader />
     </div>
