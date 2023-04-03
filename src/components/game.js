@@ -13,7 +13,6 @@ import { useRouter } from 'next/router';
 
 const Game = () => {
   const router = useRouter();
-  console.log(router.query);
   const { setScore, setIsPaused, setIsPlaying, setGameOver } = useGameContext();
   const [isFocused, setIsFocused] = useState(true);
   const [player, setPlayer] = useState(null);
