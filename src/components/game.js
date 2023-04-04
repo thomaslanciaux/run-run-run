@@ -2,7 +2,7 @@ import { Suspense, useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
 import { useGameContext } from '@/hooks/game-context';
 import { Canvas } from '@react-three/fiber';
-import { Loader, Stats } from '@react-three/drei';
+import { Loader, Stats, useProgress } from '@react-three/drei';
 import { Perf } from 'r3f-perf';
 import World from '@/components/world';
 import Player from '@/components/player';
@@ -28,7 +28,7 @@ const Game = () => {
     for (let i = 0; i < colliders.length; i++) {
       colliders[i].current.position.z = 30 + (i * 10);
     }
-    player.current.position.y = 0;
+    if (player && player.current) player.current.position.y = 0;
   };
 
   useEffect(() => {
@@ -52,7 +52,7 @@ const Game = () => {
     `}>
       <PausedScreen />
       <GameoverScreen resetGame={resetGame} />
-      {player && <StartScreen resetGame={resetGame} />}
+      <StartScreen resetGame={resetGame} />
       <Canvas
         gl={{ antialias: true }}
         shadows
@@ -76,7 +76,6 @@ const Game = () => {
           <Score />
         </Suspense>
       </Canvas>
-      <Loader />
     </div>
   );
 };
