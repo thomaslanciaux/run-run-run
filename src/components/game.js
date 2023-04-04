@@ -28,7 +28,7 @@ const Game = () => {
     for (let i = 0; i < colliders.length; i++) {
       colliders[i].current.position.z = 30 + (i * 10);
     }
-    if (player) player.current.position.y = 0;
+    if (player && player.current) player.current.position.y = 0;
   };
 
   useEffect(() => {
