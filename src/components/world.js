@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import { useThree } from '@react-three/fiber';
 import { Environment, Cloud } from '@react-three/drei';
-import { MotionBlurEffect, VelocityDepthNormalPass } from 'realism-effects';
+import { TRAAEffect, MotionBlurEffect, VelocityDepthNormalPass } from 'realism-effects';
 import * as POSTPROCESSING from 'postprocessing';
 import MovingItem from '@/components/moving-item';
 
@@ -16,8 +16,8 @@ const World = () => {
     const composer = new POSTPROCESSING.EffectComposer(gl)
     const velocityDepthNormalPass = new VelocityDepthNormalPass(scene, camera)
     composer.addPass(velocityDepthNormalPass)
-    const motionBlurEffect = new MotionBlurEffect(velocityDepthNormalPass)
-    const effectPass = new POSTPROCESSING.EffectPass(camera, motionBlurEffect);
+    const motionBlur = new MotionBlurEffect(velocityDepthNormalPass);
+    const effectPass = new POSTPROCESSING.EffectPass(camera, motionBlur)
     composer.addPass(effectPass);
   }, []); //eslint-disable-line
 
@@ -42,14 +42,14 @@ const World = () => {
         {[...Array(FLOOR_ITEMS)].map((_value, index) => (
           <MovingItem
             key={index}
-            position={[0, 0, -OFFSET + (index / FLOOR_ITEMS) * OFFSET * 2]}
+            position={[0, 0, -30  + (index / FLOOR_ITEMS) * OFFSET * 2]}
           >
             <mesh receiveShadow castShadow>
-              <boxGeometry args={[0.5, 0.5, 2]} />
+              <boxGeometry args={[0.5, 0.5, 1]} />
               <meshPhongMaterial />
             </mesh>
             <mesh receiveShadow castShadow position={[-10, 0, 0]}>
-              <boxGeometry args={[0.5, 0.5, 2]} />
+              <boxGeometry args={[0.5, 0.5, 1]} />
               <meshLambertMaterial />
             </mesh>
           </MovingItem>

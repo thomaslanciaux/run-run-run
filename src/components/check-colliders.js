@@ -14,6 +14,7 @@ const CheckColliders = ({ colliders, player }) => {
       const bboxSize = new THREE.Vector3(bbox);
       bbox.getSize(bboxSize);
 
+
       if (
         collider.current.position.z <= player?.current?.position?.z + 1.2 &&
         collider.current.position.z >= player?.current?.position?.z - 1.2 &&
