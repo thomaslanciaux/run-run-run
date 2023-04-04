@@ -2,7 +2,8 @@ import { Suspense, useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
 import { useGameContext } from '@/hooks/game-context';
 import { Canvas } from '@react-three/fiber';
-import { Loader, Stats } from '@react-three/drei';
+import { Loader, Stats, PerformanceMonitor } from '@react-three/drei';
+import { Perf } from 'r3f-perf';
 import World from '@/components/world';
 import Player from '@/components/player';
 import Score from '@/components/score';
@@ -24,10 +25,10 @@ const Game = () => {
     setIsPlaying(true);
     setIsPaused(false);
     setGameOver(false);
-    colliders.forEach((collider, index) => {
-      collider.current.position.z = 30 + (index * 10);
-    });
-    player.current.position.y = 0;
+    for (let i = 0; i < colliders.length; i++) {
+      colliders[i].current.position.z = 30 + (i * 10);
+    }
+    if (player) player.current.position.y = 0;
   };
 
   useEffect(() => {
@@ -62,9 +63,9 @@ const Game = () => {
       >
         {router.query.debug && (
           <>
-            <Stats showPanel={0} />
-            <Stats showPanel={1} className="translate-x-24" />
-            <Stats showPanel={2} className="translate-x-48" />
+            <Stats showPanel={2} />
+            <Perf position="bottom-right" />
+            <PerformanceMonitor />
           </>
         )}
         <Suspense fallback={null}>

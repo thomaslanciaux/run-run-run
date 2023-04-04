@@ -29,14 +29,12 @@ const World = () => {
       <directionalLight
         castShadow
         color="orange"
-        position={[10, 10, 10]}
-        shadow-camera-bottom={-20}
-        shadow-camera-top={20}
-        shadow-camera-left={-20}
-        shadow-camera-right={20}
-        shadow-mapSize-width={2048}
-        shadow-bias={-0.0001}
-      />
+        position={[3, 5, 5]}
+        shadow-mapSize={1024}
+        shadow-bias={-0.00001}
+      >
+        <orthographicCamera attach="shadow-camera" args={[-20, 20, 8.5, -20, 0, 60]} />
+      </directionalLight>
       <group position={[6, 0.25, 0]} receiveShadow>
         {[...Array(FLOOR_ITEMS)].map((_value, index) => (
           <MovingItem
@@ -45,7 +43,7 @@ const World = () => {
           >
             <mesh receiveShadow castShadow>
               <boxGeometry args={[0.5, 0.5, 2]} />
-              <meshLambertMaterial />
+              <meshPhongMaterial />
             </mesh>
             <mesh receiveShadow castShadow position={[-10, 0, 0]}>
               <boxGeometry args={[0.5, 0.5, 2]} />

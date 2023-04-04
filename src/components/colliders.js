@@ -9,7 +9,7 @@ const Colliders = ({ setColliders }) => {
           setColliders={setColliders}
           position={[0, 0.5, 0]}
         >
-          <mesh castShadow>
+          <mesh castShadow receiveShadow>
             <boxGeometry args={[1, 1, 1]} />
             <meshStandardMaterial
               roughness={0.2}

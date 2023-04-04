@@ -8,7 +8,8 @@ const CheckColliders = ({ colliders, player }) => {
   useFrame(() => {
     if (!isPlaying || gameOver || isPaused) return;
 
-    colliders.forEach(collider => {
+    for (let i = 0; i < colliders.length; i++) {
+      const collider = colliders[i];
       const bbox = new THREE.Box3().setFromObject(collider.current);
       const bboxSize = new THREE.Vector3(bbox);
       bbox.getSize(bboxSize);
@@ -21,7 +22,7 @@ const CheckColliders = ({ colliders, player }) => {
         setGameOver(true);
         collider.current.position.z = player?.current?.position?.z + bboxSize.z;
       }
-    });
+    }
 
     return null;
   });
