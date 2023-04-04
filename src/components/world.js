@@ -1,7 +1,6 @@
-import { useEffect } from 'react';
-import { useThree } from '@react-three/fiber';
+import { useThree, useFrame } from '@react-three/fiber';
 import { Environment, Cloud } from '@react-three/drei';
-import { TRAAEffect, MotionBlurEffect, VelocityDepthNormalPass } from 'realism-effects';
+import { MotionBlurEffect, VelocityDepthNormalPass } from 'realism-effects';
 import * as POSTPROCESSING from 'postprocessing';
 import MovingItem from '@/components/moving-item';
 
@@ -12,14 +11,14 @@ const CLOUD_TEXTURE = '/textures/cloud.png';
 const World = () => {
   const { gl, scene, camera } = useThree();
 
-  useEffect(() => {
+  useFrame(() => {
     const composer = new POSTPROCESSING.EffectComposer(gl)
     const velocityDepthNormalPass = new VelocityDepthNormalPass(scene, camera)
     composer.addPass(velocityDepthNormalPass)
     const motionBlur = new MotionBlurEffect(velocityDepthNormalPass);
     const effectPass = new POSTPROCESSING.EffectPass(camera, motionBlur)
     composer.addPass(effectPass);
-  }, []); //eslint-disable-line
+  });
 
   return (
     <>
