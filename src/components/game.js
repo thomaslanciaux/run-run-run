@@ -76,6 +76,7 @@ const Game = () => {
           <Score />
         </Suspense>
       </Canvas>
+      <Loader />
     </div>
   );
 };
