@@ -1,8 +1,8 @@
-import { Suspense, useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
 import { useGameContext } from '@/hooks/game-context';
 import { Canvas } from '@react-three/fiber';
-import { Loader, Stats, useProgress } from '@react-three/drei';
+import { Loader, Stats } from '@react-three/drei';
 import { Perf } from 'r3f-perf';
 import World from '@/components/world';
 import Player from '@/components/player';
@@ -68,13 +68,11 @@ const Game = () => {
             <Perf position="bottom-right" />
           </>
         )}
-        <Suspense fallback={null}>
           <Colliders setColliders={setColliders} />
           <CheckColliders colliders={colliders} player={player} />
           <Player setPlayer={setPlayer} />
           <World />
           <Score />
-        </Suspense>
       </Canvas>
       <Loader />
     </div>
