@@ -33,7 +33,7 @@ const World = () => {
       <directionalLight
         castShadow
         color="orange"
-        position={[-10, 20, 10]}
+        position={[-10, 10, 10]}
         shadow-camera-bottom={-30}
         shadow-camera-top={30}
         shadow-camera-left={-30}
