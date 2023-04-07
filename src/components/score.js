@@ -15,7 +15,7 @@ export default function Score() {
 
   return (
     <Text
-      position={[0, 3, 5]}
+      position={[0, 5, 5]}
       rotation={[0, Math.PI, 0]}
     >
       {score}
