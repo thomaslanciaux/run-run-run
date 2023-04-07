@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, Suspense } from 'react';
 import { useRouter } from 'next/router';
 import { useGameContext } from '@/hooks/game-context';
 import { Canvas } from '@react-three/fiber';
@@ -68,11 +68,13 @@ const Game = () => {
             <Perf position="bottom-right" />
           </>
         )}
-          <Colliders setColliders={setColliders} />
-          <CheckColliders colliders={colliders} player={player} />
-          <Player setPlayer={setPlayer} />
-          <World />
-          <Score />
+          <Suspense fallback={null}>
+            <Colliders setColliders={setColliders} />
+            <CheckColliders colliders={colliders} player={player} />
+            <Player setPlayer={setPlayer} />
+            <World />
+            <Score />
+          </Suspense>
       </Canvas>
       <Loader />
     </div>

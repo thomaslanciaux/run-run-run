@@ -8,6 +8,10 @@ const OFFSET = 30;
 const FLOOR_ITEMS = 15;
 const CLOUD_TEXTURE = '/textures/cloud.png';
 
+const floorItems = Array.from({ length: FLOOR_ITEMS }, (_, index) => ({
+  positionZ: -OFFSET  + (index / FLOOR_ITEMS) * OFFSET * 2
+}));
+
 const World = () => {
   const { gl, scene, camera } = useThree();
 
@@ -22,7 +26,7 @@ const World = () => {
 
   return (
     <>
-      <ambientLight intensity={0.5} />
+      <ambientLight intensity={0.4} />
       <fog args={['#93c5fd', 25, 30]} attach="fog" />
       <Environment preset="dawn" />
       <directionalLight
@@ -38,10 +42,8 @@ const World = () => {
         intensity={0.5}
       />
       <group position={[6, 0.25, 0]} receiveShadow>
-        {[...Array(FLOOR_ITEMS)].map((_value, index) => (
-          <MovingItem
-            key={index}
-            position={[0, 0, -30  + (index / FLOOR_ITEMS) * OFFSET * 2]}
+        {floorItems.map(({ positionZ }, index) => (
+          <MovingItem key={index} position={[0, 0, positionZ]}
           >
             <mesh receiveShadow castShadow>
               <boxGeometry args={[0.5, 0.5, 1]} />
@@ -59,10 +61,10 @@ const World = () => {
         <shadowMaterial opacity={0.1} />
       </mesh>
       <group position={[3, 0, 0]}>
-        <Cloud texture={CLOUD_TEXTURE} position={[0, 5, -5]} args={[1, 1]} scale={0.4} />
-        <Cloud texture={CLOUD_TEXTURE} position={[0, 6, -7]} args={[1, 2]} scale={0.2} />
-        <Cloud texture={CLOUD_TEXTURE} position={[0, 5, -7]} args={[1, 2]} scale={0.2} />
-        <Cloud texture={CLOUD_TEXTURE} position={[0, 10, 20]} args={[1, 3]} scale={0.8} />
+        <Cloud texture={CLOUD_TEXTURE} depth={2} position={[0, 5, -5]} args={[1, 1]} scale={0.4} />
+        <Cloud texture={CLOUD_TEXTURE} depth={1.5} position={[0, 6, -7]} args={[1, 2]} scale={0.2} />
+        <Cloud texture={CLOUD_TEXTURE} depth={3} position={[0, 5, -7]} args={[1, 2]} scale={0.2} />
+        <Cloud texture={CLOUD_TEXTURE} depth={4} position={[0, 10, 20]} args={[1, 3]} scale={0.8} />
       </group>
     </>
   );
