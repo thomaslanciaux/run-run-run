@@ -2,7 +2,7 @@ import { useState, useEffect, Suspense } from 'react';
 import { useRouter } from 'next/router';
 import { useGameContext } from '@/hooks/game-context';
 import { Canvas } from '@react-three/fiber';
-import { Loader, Stats } from '@react-three/drei';
+import { Stats, OrbitControls } from '@react-three/drei';
 import { Perf } from 'r3f-perf';
 import World from '@/components/world';
 import Player from '@/components/player';
@@ -14,12 +14,11 @@ import Colliders from '@/components/colliders';
 import CheckColliders from '@/components/check-colliders';
 
 const Game = () => {
-  const router = useRouter();
   const { setScore, setIsPaused, setIsPlaying, setGameOver } = useGameContext();
   const [isFocused, setIsFocused] = useState(true);
   const [player, setPlayer] = useState(null);
   const [colliders, setColliders] = useState([]);
-
+  const router = useRouter();
   const resetGame = () => {
     setScore(0);
     setIsPlaying(true);
@@ -47,8 +46,8 @@ const Game = () => {
 
   return (
     <div className={`
-      flex h-full items-center justify-center
-      bg-gradient-to-b from-blue-400 to-amber-100
+      flex h-full items-center justify-center bg-gradient-to-b
+      from-blue-400 to-amber-100
     `}>
       <PausedScreen />
       <GameoverScreen resetGame={resetGame} />
@@ -62,6 +61,7 @@ const Game = () => {
           far: 1000
         }}
       >
+        <OrbitControls />
         {router.query.debug && (
           <>
             <Stats showPanel={2} />
@@ -73,10 +73,9 @@ const Game = () => {
             <CheckColliders colliders={colliders} player={player} />
             <Player setPlayer={setPlayer} />
             <World />
-            <Score />
           </Suspense>
+          <Score />
       </Canvas>
-      <Loader />
     </div>
   );
 };

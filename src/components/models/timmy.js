@@ -1,3 +1,4 @@
+import { useGameContext } from '@/hooks/game-context';
 import { useRef, useEffect } from 'react'
 import { useGLTF, useAnimations } from '@react-three/drei'
 import * as THREE from 'three';
@@ -6,7 +7,8 @@ const Timmy = (props) => {
   const group = useRef()
   const { nodes, materials, animations } = useGLTF('/models/timmy.glb')
   const { actions, mixer } = useAnimations(animations, group)
-  const { isJumping, gameOver, isPaused } = props;
+  const { isPlaying, gameOver, isPaused } = useGameContext();
+  const { isJumping } = props;
 
   useEffect(() => {
     actions['DEAD'].setLoop(THREE.LoopOnce);
@@ -26,8 +28,8 @@ const Timmy = (props) => {
   }, [actions, isJumping, gameOver]);
 
   useEffect(() => {
-    mixer.timeScale = isPaused && !gameOver ? 0 : 1;
-  }, [isPaused, mixer, gameOver]);
+    mixer.timeScale = isPaused && !gameOver || !isPlaying ? 0 : 1;
+  }, [isPaused, mixer, gameOver, isPlaying]);
 
   return (
     <group ref={group} {...props} dispose={null}>

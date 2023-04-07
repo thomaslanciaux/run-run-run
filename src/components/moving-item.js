@@ -1,8 +1,9 @@
 import { useGameContext } from '@/hooks/game-context';
 import { useRef, useEffect } from 'react';
 import { useFrame } from '@react-three/fiber';
+import constants from '@/libs/constants';
 
-const OFFSET = 40;
+const { OFFSET } = constants;
 
 const MovingItem = ({ children, position, setColliders, }) => {
   const ref = useRef();

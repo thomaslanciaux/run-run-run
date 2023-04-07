@@ -49,13 +49,7 @@ const Player = ({ setPlayer }) => {
 
   return (
     <group ref={runner} position={[0, 0, -4]}>
-      <Timmy
-        scale={0.8}
-        position={[0, 0, 0]}
-        isJumping={isJumping}
-        gameOver={gameOver}
-        isPaused={isPaused}
-      />
+      <Timmy scale={0.8} position={[0, 0, 0]} isJumping={isJumping} />
     </group>
   );
 };
