@@ -61,9 +61,9 @@ const Game = () => {
           far: 1000
         }}
       >
-        <OrbitControls />
         {router.query.debug && (
           <>
+            <OrbitControls />
             <Stats showPanel={2} />
             <Perf position="bottom-right" />
           </>
