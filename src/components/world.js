@@ -1,5 +1,5 @@
 import { useThree, useFrame } from '@react-three/fiber';
-import { Environment, Cloud } from '@react-three/drei';
+import { Environment, Cloud, Sky } from '@react-three/drei';
 import { MotionBlurEffect, VelocityDepthNormalPass } from 'realism-effects';
 import * as POSTPROCESSING from 'postprocessing';
 import MovingItem from '@/components/moving-item';
@@ -27,17 +27,17 @@ const World = () => {
 
   return (
     <>
-      <ambientLight intensity={0.4} />
-      <fog args={['#93c5fd', 32, 50]} attach="fog" />
+      <ambientLight intensity={0.2} />
+      <fog args={['#93c5fd', 50, 80]} attach="fog" />
       <Environment preset="dawn" />
       <directionalLight
         castShadow
         color="orange"
-        position={[-10, 10, 10]}
-        shadow-camera-bottom={-30}
-        shadow-camera-top={30}
-        shadow-camera-left={-30}
-        shadow-camera-right={30}
+        position={[-20, 15, 15]}
+        shadow-camera-bottom={-80}
+        shadow-camera-top={80}
+        shadow-camera-left={-80}
+        shadow-camera-right={80}
         shadow-mapSize={2048}
         shadow-bias={-0.00001}
         intensity={1}
@@ -50,14 +50,19 @@ const World = () => {
         ))}
       </group>
       <mesh rotation-x={-Math.PI/2} receiveShadow position={[0, 0, 0]}>
-        <planeGeometry args={[300, 120]} />
+        <planeGeometry args={[1000, 1000]} />
         <shadowMaterial opacity={0.15} />
       </mesh>
-      <group position={[3, 0, 0]}>
-        <Cloud texture={CLOUD_TEXTURE} depth={16} position={[25, 10, -5]} args={[1, 1]} scale={1} />
-        <Cloud texture={CLOUD_TEXTURE} depth={16} position={[20, 8, -7]} args={[1, 2]} scale={0.8} />
-        <Cloud texture={CLOUD_TEXTURE} depth={15} position={[20, 5, -7]} args={[1, 2]} scale={0.2} />
-        <Cloud texture={CLOUD_TEXTURE} depth={15} position={[20, 10, 20]} args={[1, 3]} scale={0.8} />
+      <mesh rotation-x={-Math.PI/2} receiveShadow position={[0, -0.01, 0]}>
+        <planeGeometry args={[1000, 1000]} />
+        <meshStandardMaterial color="grey" />
+      </mesh>
+      <Sky />
+      <group position={[10, 2, 0]}>
+        <Cloud texture={CLOUD_TEXTURE} depth={30} position={[20, 10, -5]} args={[1, 1]} scale={1} />
+        <Cloud texture={CLOUD_TEXTURE} depth={30} position={[25, 8, -7]} args={[1, 2]} scale={0.8} />
+        <Cloud texture={CLOUD_TEXTURE} depth={25} position={[20, 12, -7]} args={[1, 2]} scale={0.2} />
+        <Cloud texture={CLOUD_TEXTURE} depth={26} position={[25, 10, 20]} args={[1, 3]} scale={0.8} />
       </group>
     </>
   );

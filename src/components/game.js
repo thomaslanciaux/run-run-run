@@ -53,12 +53,12 @@ const Game = () => {
       <GameoverScreen resetGame={resetGame} />
       <StartScreen resetGame={resetGame} />
       <Canvas
-        gl={{ antialias: true }}
+        gl={{ antialias: false }}
         shadows
         camera={{
           position: [-12, 3, -6],
           fov: 50,
-          far: 1000
+          far: 500
         }}
       >
         {router.query.debug && (

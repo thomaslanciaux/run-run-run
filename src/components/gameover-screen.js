@@ -9,10 +9,15 @@ export default function GameoverScreen({ resetGame }) {
       justify-center text-white z-10 bg-black/50 text-center
     ">
       <h1 className="text-7xl">GAME OVER!</h1>
-      <p className="text-3xl">Last score: {score}</p>
+      <div className="grid gap-2">
+        <p className="text-3xl">Last score</p>
+        <p className="text-7xl">{score}</p>
+      </div>
       <button
         onClick={() => resetGame()}
-        className="bg-white/80 hover:bg-white text-black px-8 py-4 rounded-full transition"
+        className="
+          bg-white/80 hover:bg-white text-black px-8 py-4 rounded-full transition
+        "
       >
         RESTART
       </button>
