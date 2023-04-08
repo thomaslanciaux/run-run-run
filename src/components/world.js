@@ -28,7 +28,7 @@ const World = () => {
   return (
     <>
       <ambientLight intensity={0.2} />
-      <fog args={['#93c5fd', 50, 80]} attach="fog" />
+      <fog args={['#93c5fd', 80, 100]} attach="fog" />
       <Environment preset="dawn" />
       <directionalLight
         castShadow
@@ -42,7 +42,7 @@ const World = () => {
         shadow-bias={-0.00001}
         intensity={1}
       />
-      <group position={[0, 0.25, 0]} receiveShadow>
+      <group position={[0, 0.25, 0]}>
         {floorItems.map(({ positionZ }, index) => (
           <MovingItem key={index} position={[0, 0, positionZ]}>
             <Building scale={1} position={[11, 0, 0]} rotation-y={-Math.PI / 2} />
