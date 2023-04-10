@@ -1,7 +1,8 @@
 import { useGameContext } from '@/hooks/game-context';
 
-export default function StartScreen({ resetGame }) {
-  const {isPlaying } = useGameContext();
+export default function StartScreen({ resetGame, isLoaded }) {
+  console.log(isLoaded);
+  const { isPlaying } = useGameContext();
   if (isPlaying) return;
   return (
     <div className="
@@ -10,13 +11,13 @@ export default function StartScreen({ resetGame }) {
     ">
       <h1 className="text-7xl font-bold">RUN RUN RUN</h1>
       <button
-        onClick={() => resetGame()}
-        className="
+        onClick={() => isLoaded && resetGame()}
+        className={`
           bg-white/80 hover:bg-white text-blue-500 text-xl rounded-full px-8 py-4
-          font-bold transition
-        "
+          font-bold transition ${!isLoaded && 'animate-pulse cursor-not-allowed'}
+        `}
       >
-        Play
+        {isLoaded ? 'Play!' : 'Loading…'}
       </button>
     </div>
   );

@@ -18,7 +18,9 @@ const Game = () => {
   const [isFocused, setIsFocused] = useState(true);
   const [player, setPlayer] = useState(null);
   const [colliders, setColliders] = useState([]);
+  const [isLoaded, setIsLoaded] = useState(false);
   const router = useRouter();
+
   const resetGame = () => {
     setScore(0);
     setIsPlaying(true);
@@ -29,6 +31,10 @@ const Game = () => {
     }
     if (player && player.current) player.current.position.y = 0;
   };
+
+  useEffect(() => {
+    if (player && player.current) setIsLoaded(true);
+  }, [player]);
 
   useEffect(() => {
     window.addEventListener('focus', () => setIsFocused(true));
@@ -46,12 +52,11 @@ const Game = () => {
 
   return (
     <div className={`
-      flex h-full items-center justify-center bg-gradient-to-b
-      from-blue-400 to-amber-100
+      flex h-full items-center justify-center bg-gradient-to-b from-blue-400 to-blue-500
     `}>
       <PausedScreen />
       <GameoverScreen resetGame={resetGame} />
-      <StartScreen resetGame={resetGame} />
+      <StartScreen resetGame={resetGame} isLoaded={isLoaded} />
       <Canvas
         gl={{ antialias: false }}
         shadows
@@ -69,11 +74,11 @@ const Game = () => {
           </>
         )}
           <Suspense fallback={null}>
-            <Colliders setColliders={setColliders} />
-            <CheckColliders colliders={colliders} player={player} />
             <Player setPlayer={setPlayer} />
-            <World />
+            <CheckColliders colliders={colliders} player={player} />
+            <Colliders setColliders={setColliders} />
           </Suspense>
+          <World />
           <Score />
       </Canvas>
     </div>

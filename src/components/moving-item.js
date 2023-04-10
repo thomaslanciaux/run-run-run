@@ -13,11 +13,8 @@ const MovingItem = ({ children, position, setColliders, }) => {
     if (setColliders) setColliders(prevState => [...prevState, ref]);
   }, []); // eslint-disable-line
 
-  useFrame(({ clock }, delta) => {
+  useFrame((_state, delta) => {
     if (!isPlaying || gameOver || isPaused) return;
-
-    isPaused || !isPlaying ? clock.stop() : clock.start();
-
     ref.current.position.z -= (delta * 15);
     if (ref.current.position.z <= -OFFSET) {
       ref.current.position.z = OFFSET;
