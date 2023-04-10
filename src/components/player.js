@@ -13,7 +13,7 @@ const Player = ({ setPlayer }) => {
   setPlayer(runner);
 
   const keyboardEvent = (event, bool) => {
-    if (event?.key !== ' ') return;
+    if (event?.key !== ' ' && event?.key !== 'ArrowUp') return;
     event.preventDefault();
     setIsJumping(!gameOver && !isPaused && bool);
   };

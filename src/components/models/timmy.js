@@ -6,8 +6,8 @@ import * as THREE from 'three';
 const Timmy = (props) => {
   const group = useRef()
   const { nodes, materials, animations } = useGLTF('/models/timmy.glb')
-  const { actions, mixer } = useAnimations(animations, group)
   const { isPlaying, gameOver, isPaused } = useGameContext();
+  const { actions, mixer } = useAnimations(animations, group)
   const { isJumping } = props;
 
   useEffect(() => {

@@ -1,7 +1,6 @@
 import { useGameContext } from '@/hooks/game-context';
 
 export default function StartScreen({ resetGame, isLoaded }) {
-  console.log(isLoaded);
   const { isPlaying } = useGameContext();
   if (isPlaying) return;
   return (
