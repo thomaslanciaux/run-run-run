@@ -16,7 +16,7 @@ const MovingItem = ({ children, position, setColliders, }) => {
   }, []); // eslint-disable-line
 
   useFrame(({ clock }, delta) => {
-    if (gameOver) return acceleration = 0;
+    if (gameOver) acceleration = 0;
     if (!isPlaying || gameOver || isPaused) return clock.stop();
     clock.start();
     acceleration += clock.getElapsedTime() / 100;
