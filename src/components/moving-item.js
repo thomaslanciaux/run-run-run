@@ -18,8 +18,9 @@ const MovingItem = ({ children, position, setColliders, }) => {
   useFrame(({ clock }, delta) => {
     if (gameOver) return acceleration = 0;
     if (!isPlaying || gameOver || isPaused) return clock.stop();
+    clock.start();
     acceleration += clock.getElapsedTime() / 100;
-    ref.current.position.z -= (delta * 15) + acceleration;
+    ref.current.position.z -= ((delta * 15) + acceleration);
     if (ref.current.position.z <= -OFFSET) {
       ref.current.position.z = OFFSET;
     }
