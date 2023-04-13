@@ -16,7 +16,7 @@ body,
     max-width: 100vw;
     overflow-x: hidden;
     color: black;
-    @apply bg-white;
+    @apply bg-blue-500;
 }
 
 a {

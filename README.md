@@ -1,14 +1,22 @@
 # CRYPTO RUN
 
+Install dependencies
+
+```bash
+yarn
+```
+
 Run the development server:
 
 ```bash
-npm run dev
-# or
 yarn dev
-# or
-pnpm dev
+```
+
+Run the export to a static version (in `/out`)
+```bash
+yarn build
 ```
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
+Open [http://localhost:3000/?debug=true](http://localhost:3000/?debug=true) with your browser to see the stats.

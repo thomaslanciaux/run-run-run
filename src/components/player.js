@@ -1,46 +1,55 @@
+import { useGameContext } from '@/hooks/game-context';
 import { useFrame } from '@react-three/fiber';
 import { useRef, useEffect, useState } from 'react';
-import Bot from '@/components/models/bot';
+import Timmy from '@/components/models/timmy';
 
-const Player = () => {
-  const runner = useRef();
+let velocity = 0;
+
+const Player = ({ setPlayer }) => {
+  const { isPlaying, gameOver, isPaused } = useGameContext();
   const [isJumping, setIsJumping] = useState(false);
-  let velocity = 0;
+  const runner = useRef();
+
+  setPlayer(runner);
+
+  const keyboardEvent = (event, bool) => {
+    if (event?.key !== ' ' && event?.key !== 'ArrowUp') return;
+    event.preventDefault();
+    setIsJumping(!gameOver && !isPaused && bool);
+  };
 
   useEffect(() => {
-    document.addEventListener('keydown', (e) => e.key === ' ' && setIsJumping(true));
-    document.addEventListener('keyup', (e) => e.key === ' ' && setIsJumping(false));
-    document.addEventListener('touchstart', () => setIsJumping(true));
+    document.addEventListener('keydown', e => keyboardEvent(e, true));
+    document.addEventListener('keyup', e => keyboardEvent(e, false));
+    document.addEventListener('touchstart', () => setIsJumping(!gameOver && !isPaused && true));
     document.addEventListener('touchend', () => setIsJumping(false));
 
     return () => {
-      document.removeEventListener('keydown', () => setIsJumping(true));
-      document.removeEventListener('keyup', () => setIsJumping(false));
+      document.removeEventListener('keydown', e => keyboardEvent(e, true));
+      document.removeEventListener('keyup', e => keyboardEvent(e, false));
       document.removeEventListener('touchstart', () => setIsJumping(true));
       document.removeEventListener('touchend', () => setIsJumping(false));
     };
   });
 
-  useFrame((_state, delta) => {
+  useFrame(({ clock }, delta) => {
+    if (!isPlaying) return velocity = 0;
+
     if (isJumping && runner.current.position.y == 0.0) {
-      velocity = 30;
+      velocity = 20;
     }
-    if (!isJumping) {
-      velocity = -20;
-    }
-    const acceleration = -150 * delta;
+
+    const acceleration = -85 * delta;
     runner.current.position.y += delta * (velocity + acceleration * 0.5);
     runner.current.position.y = Math.max(runner.current.position.y, 0.0);
     velocity = Math.max(velocity + acceleration, -100);
+
+    isPaused || !isPlaying ? clock.stop() : clock.start();
   });
 
   return (
-    <group ref={runner}>
-      <Bot
-        scale={0.5}
-        position={[0, 0, -4]}
-        isJumping={isJumping}
-      />
+    <group ref={runner} position={[0, 0, -4]}>
+      <Timmy scale={0.8} position={[0, 0, 0]} isJumping={isJumping} />
     </group>
   );
 };
