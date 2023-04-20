@@ -1,5 +1,4 @@
 import { useFrame } from '@react-three/fiber';
-import { Text } from '@react-three/drei';
 import { useGameContext } from '@/hooks/game-context';
 
 export default function Score() {
@@ -13,12 +12,5 @@ export default function Score() {
     }
   });
 
-  return (
-    <Text
-      position={[0, 4, 5]}
-      rotation={[0, Math.PI, 0]}
-    >
-      {score}
-    </Text>
-  );
+  return null;
 };

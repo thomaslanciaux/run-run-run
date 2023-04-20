@@ -7,10 +7,13 @@ export const GameProvider = ({ children }) => {
   const [isPaused, setIsPaused] = useState(false);
   const [gameOver, setGameOver] = useState(false);
   const [score, setScore] = useState(0);
+  const [acceleration, setAcceleration] = useState(0);
 
   return (
     <GameContext.Provider
       value={{
+        acceleration,
+        setAcceleration,
         score, 
         setScore,
         isPlaying,

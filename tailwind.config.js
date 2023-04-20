@@ -20,6 +20,9 @@ module.exports = {
                 'height': 'height',
                 'spacing': 'margin, padding',
             },
+            textShadow: {
+              'text-shadow': 'text-shadow'
+            }
         },
     },
     plugins: [],

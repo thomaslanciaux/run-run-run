@@ -2,15 +2,15 @@ import { useThree, useFrame } from '@react-three/fiber';
 import { Environment, Cloud, Sky, } from '@react-three/drei';
 import { MotionBlurEffect, VelocityDepthNormalPass } from 'realism-effects';
 import * as POSTPROCESSING from 'postprocessing';
-import MovingItem from '@/components/moving-item';
-import Building from '@/components/models/building';
+import MovingBuilding from '@/components/moving-building';
 import constants from '@/libs/constants';
 
 const { OFFSET, FLOOR_ITEMS } = constants;
 const CLOUD_TEXTURE = '/textures/cloud.png';
 
 const floorItems = Array.from({ length: FLOOR_ITEMS }, (_, index) => ({
-  positionZ: -OFFSET  + (index / FLOOR_ITEMS) * OFFSET * 2
+  positionZ: -OFFSET  + (index / FLOOR_ITEMS) * OFFSET * 2,
+  color: '#'+(0x1000000+Math.random()*0xffffff).toString(16).substr(1,6)
 }));
 
 const World = () => {
@@ -42,11 +42,15 @@ const World = () => {
         shadow-bias={-0.0001}
         intensity={0.5}
       />
-      <group position={[0, 0.25, 0]}>
-        {floorItems.map(({ positionZ }, index) => (
-          <MovingItem key={index} position={[0, 0, positionZ]}>
-            <Building scale={1} position={[11, 0, 0]} rotation-y={-Math.PI / 2} />
-          </MovingItem>
+      <group position={[0, 0.25, 24]}>
+        {floorItems.map(({ positionZ, color }, index) => (
+          <MovingBuilding
+            key={index}
+            scale={1}
+            position={[0, -0.1, positionZ]}
+            rotation-y={-Math.PI / 2}
+            color={color}
+          />
         ))}
       </group>
       <mesh rotation-x={-Math.PI/2} receiveShadow position={[0, 0, 0]}>

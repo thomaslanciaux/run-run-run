@@ -7,6 +7,7 @@ import { Perf } from 'r3f-perf';
 import World from '@/components/world';
 import Player from '@/components/player';
 import Score from '@/components/score';
+import ScoreScreen from '@/components/score-screen';
 import StartScreen from '@/components/start-screen';
 import GameoverScreen from '@/components/gameover-screen';
 import PausedScreen from '@/components/paused-screen';
@@ -81,6 +82,7 @@ const Game = () => {
           <World />
           <Score />
       </Canvas>
+      <ScoreScreen />
     </div>
   );
 };
