@@ -18,8 +18,6 @@ const Player = ({ setPlayer }) => {
 
   setPlayer(runner);
 
-  console.log('ACCEL', acceleration);
-
   const keyboardEvent = (event, bool) => {
     if (event?.key !== ' ' && event?.key !== 'ArrowUp') return;
     event.preventDefault();
