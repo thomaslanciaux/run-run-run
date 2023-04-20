@@ -15,7 +15,7 @@ import Colliders from '@/components/colliders';
 import CheckColliders from '@/components/check-colliders';
 
 const Game = () => {
-  const { setScore, setIsPaused, setIsPlaying, setGameOver } = useGameContext();
+  const { setScore, setIsPaused, setIsPlaying, setGameOver, setAcceleration } = useGameContext();
   const [isFocused, setIsFocused] = useState(true);
   const [player, setPlayer] = useState(null);
   const [colliders, setColliders] = useState([]);
@@ -27,6 +27,7 @@ const Game = () => {
     setIsPlaying(true);
     setIsPaused(false);
     setGameOver(false);
+    setAcceleration(0);
     for (let i = 0; i < colliders.length; i++) {
       colliders[i].current.position.z = 30 + (i * 10);
     }

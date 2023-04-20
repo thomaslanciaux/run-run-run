@@ -18,6 +18,8 @@ const Player = ({ setPlayer }) => {
 
   setPlayer(runner);
 
+  console.log('ACCEL', acceleration);
+
   const keyboardEvent = (event, bool) => {
     if (event?.key !== ' ' && event?.key !== 'ArrowUp') return;
     event.preventDefault();
@@ -42,7 +44,7 @@ const Player = ({ setPlayer }) => {
     if (!isPlaying) return velocity = 0;
 
     if (isPlaying && !gameOver && !isPaused) {
-      setAcceleration(acceleration + clock.getElapsedTime() / 100);
+      setAcceleration(acceleration + clock.getElapsedTime() / 1000);
     }
 
     if (isJumping && runner.current.position.y == 0.0) {
