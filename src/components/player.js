@@ -46,10 +46,10 @@ const Player = ({ setPlayer }) => {
     }
 
     if (isJumping && runner.current.position.y == 0.0) {
-      velocity = 20;
+      velocity = 20 + acceleration;
     }
 
-    const jumpAcceleration = (-85 + (acceleration * 10)) * delta;
+    const jumpAcceleration = (-85 + acceleration * 2) * delta;
     runner.current.position.y += delta * (velocity + jumpAcceleration * 0.5);
     runner.current.position.y = Math.max(runner.current.position.y, 0.0);
     velocity = Math.max(velocity + jumpAcceleration, -100);

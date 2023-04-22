@@ -11,7 +11,7 @@ export default function GameoverScreen({ resetGame }) {
       <h1 className="text-7xl">GAME OVER!</h1>
       <div className="grid gap-2">
         <p className="text-3xl">Last score</p>
-        <p className="text-7xl">{score}</p>
+        <p className="text-7xl">{score * 100}</p>
       </div>
       <button
         onClick={() => resetGame()}

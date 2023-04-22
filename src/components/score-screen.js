@@ -6,7 +6,7 @@ export default function ScoreScreen() {
 
   return (
     <div className="fixed bottom-0 right-0 text-white text-3xl p-4 drop-shadow-md">
-      {score}
+      {score * 100}
     </div>
   );
 };

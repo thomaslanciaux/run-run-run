@@ -3,7 +3,7 @@ import MovingItem from '@/components/moving-item';
 const Colliders = ({ setColliders, obstacles }) => {
   return (
     <>
-      {obstacles.map(({ positionZ, color }, index) => (
+      {obstacles.map(({ positionZ }, index) => (
         <MovingItem
           key={index}
           setColliders={setColliders}
@@ -14,8 +14,7 @@ const Colliders = ({ setColliders, obstacles }) => {
             <boxGeometry args={[1, 1, 1]} />
             <meshStandardMaterial
               roughness={0.2}
-              metalness={1}
-              color={color}
+              metalness={0.8}
             />
           </mesh>
         </MovingItem>
