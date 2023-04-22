@@ -1,5 +1,4 @@
-import { useThree } from '@react-three/fiber';
-import { Environment, Cloud, Sky, Instances, Instance } from '@react-three/drei';
+import { Environment, Cloud, Sky } from '@react-three/drei';
 import MovingBuilding from '@/components/moving-building';
 import constants from '@/libs/constants';
 import { getColor } from '@/libs/utils';
@@ -16,7 +15,7 @@ const World = () => (
   <>
     <ambientLight intensity={0.5} />
     {/*<fog args={['#93c5fd', 80, 100]} attach="fog" />*/}
-    <Environment preset="city" />
+    <Environment preset="dawn" />
     <directionalLight
       castShadow
       color="white"
