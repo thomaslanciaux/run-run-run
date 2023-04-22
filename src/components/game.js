@@ -13,6 +13,9 @@ import GameoverScreen from '@/components/gameover-screen';
 import PausedScreen from '@/components/paused-screen';
 import Colliders from '@/components/colliders';
 import CheckColliders from '@/components/check-colliders';
+import { generateObstacles } from '@/libs/utils';
+
+const obstacles = generateObstacles(48);
 
 const Game = () => {
   const { setScore, setIsPaused, setIsPlaying, setGameOver, setAcceleration } = useGameContext();
@@ -28,8 +31,9 @@ const Game = () => {
     setIsPaused(false);
     setGameOver(false);
     setAcceleration(0);
+    if (!obstacles.length) return;
     for (let i = 0; i < colliders.length; i++) {
-      colliders[i].current.position.z = 30 + (i * 10);
+      colliders[i].current.position.z = obstacles[i].positionZ;
     }
     if (player && player.current) player.current.position.y = 0;
   };
@@ -78,7 +82,7 @@ const Game = () => {
           <Suspense fallback={null}>
             <Player setPlayer={setPlayer} />
             <CheckColliders colliders={colliders} player={player} />
-            <Colliders setColliders={setColliders} />
+            <Colliders setColliders={setColliders} obstacles={obstacles} />
           </Suspense>
           <World />
           <Score />

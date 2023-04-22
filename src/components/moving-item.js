@@ -1,11 +1,8 @@
 import { useGameContext } from '@/hooks/game-context';
 import { useRef, useEffect } from 'react';
 import { useFrame } from '@react-three/fiber';
-import constants from '@/libs/constants';
 
-const { OFFSET } = constants;
-
-const MovingItem = ({ children, position, setColliders }) => {
+const MovingItem = ({ children, position, setColliders, offset }) => {
   const ref = useRef();
   const { gameOver, isPaused, isPlaying, acceleration } = useGameContext();
 
@@ -18,8 +15,8 @@ const MovingItem = ({ children, position, setColliders }) => {
 
     ref.current.position.z -= ((delta * 15) + acceleration);
 
-    if (ref.current.position.z <= -OFFSET) {
-      ref.current.position.z = OFFSET;
+    if (ref.current.position.z <= -offset) {
+      ref.current.position.z = offset;
     }
   });
 
