@@ -14,7 +14,8 @@ const Colliders = ({ setColliders, obstacles }) => {
             <boxGeometry args={[1, 1, 1]} />
             <meshStandardMaterial
               roughness={0.2}
-              metalness={0.8}
+              metalness={1}
+              color="red"
             />
           </mesh>
         </MovingItem>

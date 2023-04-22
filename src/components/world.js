@@ -1,5 +1,5 @@
 import { useThree } from '@react-three/fiber';
-import { Environment, Cloud, Sky, } from '@react-three/drei';
+import { Environment, Cloud, Sky, Instances, Instance } from '@react-three/drei';
 import MovingBuilding from '@/components/moving-building';
 import constants from '@/libs/constants';
 import { getColor } from '@/libs/utils';
@@ -8,7 +8,7 @@ const { OFFSET, FLOOR_ITEMS } = constants;
 const CLOUD_TEXTURE = '/textures/cloud.png';
 
 const floorItems = Array.from({ length: FLOOR_ITEMS }, (_, index) => ({
-  positionZ: -OFFSET  + (index / FLOOR_ITEMS) * OFFSET * 2,
+  positionZ: -OFFSET + (index / FLOOR_ITEMS) * OFFSET * 2,
   color: getColor()
 }));
 
@@ -16,7 +16,7 @@ const World = () => (
   <>
     <ambientLight intensity={0.5} />
     {/*<fog args={['#93c5fd', 80, 100]} attach="fog" />*/}
-    <Environment preset="dawn" />
+    <Environment preset="city" />
     <directionalLight
       castShadow
       color="white"
@@ -40,9 +40,9 @@ const World = () => (
         />
       ))}
     </group>
-    <mesh rotation-x={-Math.PI/2} receiveShadow position={[0, 0, 0]}>
+    <mesh rotation-x={-Math.PI / 2} receiveShadow position={[0, 0, 0]}>
       <planeGeometry args={[1000, 1000]} />
-      <meshStandardMaterial color="#666666" />
+      <meshStandardMaterial color="#333333" roughness={0.8} metalness={0.3} />
     </mesh>
     <Sky />
     <group position={[10, 2, 0]}>

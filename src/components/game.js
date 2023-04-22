@@ -15,10 +15,19 @@ import Colliders from '@/components/colliders';
 import CheckColliders from '@/components/check-colliders';
 import { generateObstacles } from '@/libs/utils';
 
-const obstacles = generateObstacles(48);
+const obstacles = generateObstacles(64);
+
+console.log(obstacles);
 
 const Game = () => {
-  const { setScore, setIsPaused, setIsPlaying, setGameOver, setAcceleration } = useGameContext();
+  const {
+    setScore,
+    setIsPaused,
+    setIsPlaying,
+    setGameOver,
+    setAcceleration
+  } = useGameContext();
+
   const [isFocused, setIsFocused] = useState(true);
   const [player, setPlayer] = useState(null);
   const [colliders, setColliders] = useState([]);
@@ -64,7 +73,7 @@ const Game = () => {
       <GameoverScreen resetGame={resetGame} />
       <StartScreen resetGame={resetGame} isLoaded={isLoaded} />
       <Canvas
-        gl={{ antialias: true }}
+        gl={{ antialias: false }}
         shadows
         camera={{
           position: [-12, 3, -6],
@@ -81,7 +90,7 @@ const Game = () => {
         )}
           <Suspense fallback={null}>
             <Player setPlayer={setPlayer} />
-            <CheckColliders colliders={colliders} player={player} />
+            <CheckColliders colliders={colliders} player={player} debug={router.query.debug === 'true'}/>
             <Colliders setColliders={setColliders} obstacles={obstacles} />
           </Suspense>
           <World />
