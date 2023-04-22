@@ -4,13 +4,14 @@ import { MotionBlurEffect, VelocityDepthNormalPass } from 'realism-effects';
 import * as POSTPROCESSING from 'postprocessing';
 import MovingBuilding from '@/components/moving-building';
 import constants from '@/libs/constants';
+import { getColor } from '@/libs/utils';
 
 const { OFFSET, FLOOR_ITEMS } = constants;
 const CLOUD_TEXTURE = '/textures/cloud.png';
 
 const floorItems = Array.from({ length: FLOOR_ITEMS }, (_, index) => ({
   positionZ: -OFFSET  + (index / FLOOR_ITEMS) * OFFSET * 2,
-  color: '#'+(0x1000000+Math.random()*0xffffff).toString(16).substr(1,6)
+  color: getColor()
 }));
 
 const World = () => {

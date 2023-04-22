@@ -3,6 +3,7 @@ import { useRef, useState } from 'react';
 import { useFrame } from '@react-three/fiber';
 import constants from '@/libs/constants';
 import Building from '@/components/models/building';
+import { getColor } from '@/libs/utils';
 
 const { OFFSET } = constants;
 
@@ -18,7 +19,7 @@ const MovingBuilding = (props) => {
 
     if (ref.current.position.z <= -OFFSET) {
       ref.current.position.z = OFFSET;
-      setBuildingColor('#'+(0x1000000+Math.random()*0xffffff).toString(16).substr(1,6));
+      setBuildingColor(getColor());
     }
   });
 
