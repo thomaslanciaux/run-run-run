@@ -1,4 +1,5 @@
 import MovingItem from '@/components/moving-item';
+import Hydrant from '@/components/models/hydrant';
 
 const Colliders = ({ setColliders, obstacles }) => {
   return (
@@ -10,14 +11,7 @@ const Colliders = ({ setColliders, obstacles }) => {
           position={[0, 0.5, positionZ]}
           offset={(obstacles[obstacles.length - 1].positionZ / 2) + 1}
         >
-          <mesh castShadow receiveShadow>
-            <boxGeometry args={[1, 1, 1]} />
-            <meshStandardMaterial
-              roughness={0.2}
-              metalness={1}
-              color="red"
-            />
-          </mesh>
+          <Hydrant scale={0.3} position={[0, -.5, 0]} rotation-y={Math.PI} />
         </MovingItem>
       ))}
     </>

@@ -7,6 +7,7 @@ export default function GameoverScreen({ resetGame }) {
     <div className="
       absolute top-0 left-0 h-full w-full grid gap-8 items-center p-4
       justify-center text-white z-10 bg-black/50 text-center
+      drop-shadow-md
     ">
       <h1 className="text-7xl">GAME OVER!</h1>
       <div className="grid gap-2">
