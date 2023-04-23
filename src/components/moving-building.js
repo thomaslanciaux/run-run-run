@@ -15,7 +15,7 @@ const MovingBuilding = (props) => {
   useFrame((_state, delta) => {
     if (!isPlaying || gameOver || isPaused) return;
 
-    ref.current.position.z -= ((delta * 14.8) + acceleration);
+    ref.current.position.z -= (delta * 15) + acceleration;
 
     if (ref.current.position.z <= -OFFSET) {
       ref.current.position.z = OFFSET;

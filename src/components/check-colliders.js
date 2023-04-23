@@ -22,7 +22,7 @@ const CheckColliders = ({ colliders, player, debug = false }) => {
         player.current.position?.y <= bboxSize.y - 0.5
       ) {
         setGameOver(true);
-        collider.current.position.z = player?.current?.position?.z + bboxSize.z;
+        collider.current.position.z = player?.current?.position?.z + (bboxSize.z/2);
       }
     }
 

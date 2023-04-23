@@ -13,7 +13,7 @@ const MovingItem = ({ children, position, setColliders, offset }) => {
   useFrame((_state, delta) => {
     if (!isPlaying || gameOver || isPaused) return;
 
-    ref.current.position.z -= ((delta * 15) + acceleration);
+    ref.current.position.z -= (delta * 15) + acceleration;
 
     if (ref.current.position.z <= -offset) {
       ref.current.position.z = offset;
