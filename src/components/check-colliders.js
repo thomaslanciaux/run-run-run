@@ -17,8 +17,8 @@ const CheckColliders = ({ colliders, player, debug = false }) => {
       if (debug) return;
 
       if (
-        collider.current.position.z <= player?.current?.position?.z + 1.5 &&
-        collider.current.position.z >= player?.current?.position?.z - 1.5 &&
+        collider.current.position.z <= player?.current?.position?.z + 0.5 &&
+        collider.current.position.z >= player?.current?.position?.z - 0.5 &&
         player.current.position?.y <= bboxSize.y - 0.5
       ) {
         setGameOver(true);

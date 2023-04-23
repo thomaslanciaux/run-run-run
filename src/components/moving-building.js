@@ -15,7 +15,7 @@ const MovingBuilding = (props) => {
   useFrame((_state, delta) => {
     if (!isPlaying || gameOver || isPaused) return;
 
-    ref.current.position.z -= ((delta * 15) + acceleration);
+    ref.current.position.z -= ((delta * 14.8) + acceleration);
 
     if (ref.current.position.z <= -OFFSET) {
       ref.current.position.z = OFFSET;
@@ -27,7 +27,7 @@ const MovingBuilding = (props) => {
     <group ref={ref} position={props.position}>
       <Building
         scale={1}
-        position={[11, -0.1, 0]}
+        position={[12, -0.1, 0]}
         rotation-y={-Math.PI / 2}
         color={buildingColor}
       />

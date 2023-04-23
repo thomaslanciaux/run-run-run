@@ -1,10 +1,9 @@
-import { Environment, Cloud, Sky } from '@react-three/drei';
+import { Environment, Sky } from '@react-three/drei';
 import MovingBuilding from '@/components/moving-building';
 import constants from '@/libs/constants';
 import { getColor } from '@/libs/utils';
 
 const { OFFSET, FLOOR_ITEMS } = constants;
-const CLOUD_TEXTURE = '/textures/cloud.png';
 
 const floorItems = Array.from({ length: FLOOR_ITEMS }, (_, index) => ({
   positionZ: -OFFSET + (index / FLOOR_ITEMS) * OFFSET * 2,
@@ -44,12 +43,6 @@ const World = () => (
       <meshStandardMaterial color="#333333" roughness={0.8} metalness={0.3} />
     </mesh>
     <Sky />
-    <group position={[10, 2, 0]}>
-      <Cloud texture={CLOUD_TEXTURE} depth={30} position={[25, 10, -5]} args={[1, 1]} scale={1} />
-      <Cloud texture={CLOUD_TEXTURE} depth={30} position={[25, 8, -7]} args={[1, 2]} scale={0.8} />
-      <Cloud texture={CLOUD_TEXTURE} depth={25} position={[28, 12, -7]} args={[1, 2]} scale={1} />
-      <Cloud texture={CLOUD_TEXTURE} depth={26} position={[25, 10, 20]} args={[1, 3]} scale={0.8} />
-    </group>
   </>
 );
 

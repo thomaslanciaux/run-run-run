@@ -17,8 +17,6 @@ import { generateObstacles } from '@/libs/utils';
 
 const obstacles = generateObstacles(64);
 
-console.log(obstacles);
-
 const Game = () => {
   const {
     setScore,
