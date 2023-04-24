@@ -15,7 +15,7 @@ import Colliders from '@/components/colliders';
 import CheckColliders from '@/components/check-colliders';
 import { generateObstacles } from '@/libs/utils';
 
-const obstacles = generateObstacles(64);
+const obstacles = generateObstacles(72);
 
 const Game = () => {
   const {

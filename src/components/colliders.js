@@ -22,7 +22,7 @@ const Colliders = ({ setColliders, obstacles }) => {
                 <Bin scale={0.0065} position={[0, -.5, 0]} />
               )}
               {type === 2 && (
-                <Mailbox scale={[0.6, 0.35, 0.4]} position={[0, -.6, 0]} rotation-y={Math.PI / 2} />
+                <Mailbox scale={[0.6, 0.4, 0.4]} position={[0, -.6, 0]} rotation-y={Math.PI / 2} />
               )}
             </MovingItem>
           ))}
