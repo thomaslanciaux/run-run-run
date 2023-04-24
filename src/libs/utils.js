@@ -9,6 +9,7 @@ export const generateObstacles = (amount = 128) => {
   for (let i = 0; i < amount; i++) {
     obstacles.push({
       positionZ: i === 0 ? 12 : (obstacles[i-1].positionZ + 8) + Math.floor(Math.random() * 12),
+      type: Math.floor(Math.random() * 2)
     });
   }
   return obstacles;

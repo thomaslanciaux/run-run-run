@@ -23,7 +23,7 @@ const Game = () => {
     setIsPaused,
     setIsPlaying,
     setGameOver,
-    setAcceleration
+    setAcceleration,
   } = useGameContext();
 
   const [isFocused, setIsFocused] = useState(true);
