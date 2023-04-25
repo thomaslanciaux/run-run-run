@@ -23,7 +23,7 @@ const World = ({ acceleration }) => (
       shadow-camera-top={80}
       shadow-camera-left={-80}
       shadow-camera-right={80}
-      shadow-mapSize={1024}
+      shadow-mapSize={512}
       shadow-bias={-0.001}
       intensity={0.5}
     />

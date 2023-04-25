@@ -2,12 +2,17 @@ import { useState, useEffect, Suspense, useRef } from 'react';
 import { useRouter } from 'next/router';
 import { useGameContext } from '@/hooks/game-context';
 import { Canvas } from '@react-three/fiber';
-import { Stats, OrbitControls, PerformanceMonitor, AdaptiveDpr, AdaptiveEvents } from '@react-three/drei';
+import {
+  AdaptiveDpr,
+  AdaptiveEvents,
+  OrbitControls,
+  PerformanceMonitor,
+  Stats,
+} from '@react-three/drei';
 import { Perf } from 'r3f-perf';
 import World from '@/components/world';
 import Player from '@/components/player';
 import Score from '@/components/score';
-// import ScoreScreen from '@/components/score-screen';
 import StartScreen from '@/components/start-screen';
 import GameoverScreen from '@/components/gameover-screen';
 import PausedScreen from '@/components/paused-screen';
@@ -22,6 +27,8 @@ const Game = () => {
     setIsPaused,
     setIsPlaying,
     setGameOver,
+    gameOver,
+    isPlaying,
   } = useGameContext();
 
   const score = useRef(0);
@@ -57,7 +64,7 @@ const Game = () => {
 
     return () => {
       window.removeEventListener('focus', () => setIsFocused(true));
-      window.addEventListener('blur', () => setIsFocused(false));
+      window.removeEventListener('blur', () => setIsFocused(false));
     };
   });
 
@@ -70,15 +77,14 @@ const Game = () => {
       flex h-full items-center justify-center bg-gradient-to-b from-blue-400 to-blue-500
     `}>
       <PausedScreen />
-      <GameoverScreen resetGame={resetGame} score={score} />
-      <StartScreen resetGame={resetGame} isLoaded={isLoaded} />
+      {gameOver && <GameoverScreen resetGame={resetGame} score={score} />}
+      {!isPlaying && <StartScreen resetGame={resetGame} isLoaded={isLoaded} />}
       <Canvas
         flat
         dpr={dpr}
         gl={{
           antialias: false,
           physicallyCorrectLight: true,
-          autoClear: false,
         }}
         shadows
         camera={{
