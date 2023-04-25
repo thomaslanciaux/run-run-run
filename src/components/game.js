@@ -84,7 +84,7 @@ const Game = () => {
           <>
             <OrbitControls />
             <Stats showPanel={2} />
-            <Perf position="bottom-left" />
+            <Perf position="bottom-left" antialias={false} />
           </>
         )}
           <Suspense fallback={null}>

@@ -16,7 +16,7 @@ const MovingItem = ({ children, position, setColliders, offset }) => {
     ref.current.position.z -= (delta * 15) + acceleration;
 
     if (ref.current.position.z <= -offset) {
-      ref.current.position.z = offset + (acceleration * 2);
+      ref.current.position.z = offset + (acceleration * 1200);
     }
   });
 

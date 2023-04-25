@@ -1,4 +1,4 @@
-export const getColor = (hue = 70) => `hsl(
+export const getColor = (hue = 80) => `hsl(
   ${360 * Math.random()},
   ${(25 + 70 * Math.random())}%, 
   ${(hue + 10 * Math.random())}%
