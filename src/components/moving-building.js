@@ -9,16 +9,15 @@ import * as THREE from 'three';
 const { OFFSET } = constants;
 
 const MovingBuilding = (props) => {
-
-  const color = useMemo(() => new THREE.Color(props.color), [props.color]);
-
   const ref = useRef();
-  const { gameOver, isPaused, isPlaying, acceleration } = useGameContext();
+  const { acceleration } = props;
+  const color = useMemo(() => new THREE.Color(props.color), [props.color]);
+  const { gameOver, isPaused, isPlaying } = useGameContext();
 
   useFrame((_state, delta) => {
     if (!isPlaying || gameOver || isPaused) return;
 
-    ref.current.position.z -= (delta * 15) + acceleration;
+    ref.current.position.z -= (delta * 15) + acceleration.current;
 
     if (ref.current.position.z <= -OFFSET) {
       ref.current.position.z = OFFSET;

@@ -1,4 +1,4 @@
-import { useState, useEffect, Suspense } from 'react';
+import { useState, useEffect, Suspense, useRef } from 'react';
 import { useRouter } from 'next/router';
 import { useGameContext } from '@/hooks/game-context';
 import { Canvas } from '@react-three/fiber';
@@ -7,7 +7,7 @@ import { Perf } from 'r3f-perf';
 import World from '@/components/world';
 import Player from '@/components/player';
 import Score from '@/components/score';
-import ScoreScreen from '@/components/score-screen';
+// import ScoreScreen from '@/components/score-screen';
 import StartScreen from '@/components/start-screen';
 import GameoverScreen from '@/components/gameover-screen';
 import PausedScreen from '@/components/paused-screen';
@@ -15,16 +15,17 @@ import Colliders from '@/components/colliders';
 import CheckColliders from '@/components/check-colliders';
 import { generateObstacles } from '@/libs/utils';
 
-const obstacles = generateObstacles(72);
+const obstacles = generateObstacles();
 
 const Game = () => {
   const {
-    setScore,
     setIsPaused,
     setIsPlaying,
     setGameOver,
-    setAcceleration,
   } = useGameContext();
+
+  const score = useRef(0);
+  const acceleration = useRef(0);
 
   const [isFocused, setIsFocused] = useState(true);
   const [player, setPlayer] = useState(null);
@@ -34,11 +35,11 @@ const Game = () => {
   const router = useRouter();
 
   const resetGame = () => {
-    setScore(0);
+    score.current = 0;
+    acceleration.current = 0;
     setIsPlaying(true);
     setIsPaused(false);
     setGameOver(false);
-    setAcceleration(0);
     if (!obstacles.length) return;
     for (let i = 0; i < colliders.length; i++) {
       colliders[i].current.position.z = obstacles[i].positionZ;
@@ -69,12 +70,16 @@ const Game = () => {
       flex h-full items-center justify-center bg-gradient-to-b from-blue-400 to-blue-500
     `}>
       <PausedScreen />
-      <GameoverScreen resetGame={resetGame} />
+      <GameoverScreen resetGame={resetGame} score={score} />
       <StartScreen resetGame={resetGame} isLoaded={isLoaded} />
       <Canvas
         flat
         dpr={dpr}
-        gl={{ antialias: false }}
+        gl={{
+          antialias: false,
+          physicallyCorrectLight: true,
+          autoClear: false,
+        }}
         shadows
         camera={{
           position: [-12, 3, -6],
@@ -93,14 +98,13 @@ const Game = () => {
           </>
         )}
           <Suspense fallback={null}>
-            <Player setPlayer={setPlayer} />
-            <CheckColliders colliders={colliders} player={player} debug={router.query.debug === 'true'}/>
-            <Colliders setColliders={setColliders} obstacles={obstacles} />
-            <World />
+            <Player setPlayer={setPlayer} acceleration={acceleration} />
+            <CheckColliders colliders={colliders} player={player} debug={router.query.debug === 'true'} />
+            <Colliders setColliders={setColliders} obstacles={obstacles} acceleration={acceleration} />
+            <World acceleration={acceleration} />
           </Suspense>
-          <Score />
+          <Score score={score} />
       </Canvas>
-      <ScoreScreen />
     </div>
   );
 };

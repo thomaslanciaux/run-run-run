@@ -10,7 +10,7 @@ const floorItems = Array.from({ length: FLOOR_ITEMS }, (_, index) => ({
   color: getColor()
 }));
 
-const World = () => (
+const World = ({ acceleration }) => (
   <>
     <ambientLight intensity={0.5} />
     {/*<fog args={['#93c5fd', 80, 100]} attach="fog" />*/}
@@ -35,6 +35,7 @@ const World = () => (
           position={[0, -0.1, positionZ]}
           rotation-y={-Math.PI / 2}
           color={color}
+          acceleration={acceleration}
         />
       ))}
     </group>

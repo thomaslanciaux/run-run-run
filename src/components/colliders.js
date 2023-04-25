@@ -4,7 +4,7 @@ import { BinInstances, Bin } from '@/components/models/bin';
 import { MailboxInstances, Mailbox } from '@/components/models/mailbox';
 import { ElectricBoxInstances, ElectricBox } from '@/components/models/box';
 
-const Colliders = ({ setColliders, obstacles }) => {
+const Colliders = ({ setColliders, obstacles, acceleration }) => {
   return (
     <Instances>
       <BinInstances>
@@ -16,6 +16,7 @@ const Colliders = ({ setColliders, obstacles }) => {
                 setColliders={setColliders}
                 position={[0, 0.5, positionZ]}
                 offset={(obstacles[obstacles.length - 1].positionZ / 2) + 1}
+                acceleration={acceleration}
               >
                 {type === 0 && (
                   <Hydrant scale={0.3} position={[0, -0.5, 0]} />

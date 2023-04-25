@@ -1,7 +1,7 @@
 import { useGameContext } from '@/hooks/game-context';
 
-export default function GameoverScreen({ resetGame }) {
-  const { score, gameOver } = useGameContext();
+export default function GameoverScreen({ resetGame, score }) {
+  const { gameOver } = useGameContext();
 
   return gameOver ? (
     <div className="
@@ -12,7 +12,7 @@ export default function GameoverScreen({ resetGame }) {
       <h1 className="text-7xl">GAME OVER!</h1>
       <div className="grid gap-2">
         <p className="text-3xl">Last score</p>
-        <p className="text-7xl">{score * 100}</p>
+        <p className="text-7xl">{score.current * 100}</p>
       </div>
       <button
         onClick={() => resetGame()}

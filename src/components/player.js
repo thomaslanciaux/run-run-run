@@ -5,13 +5,11 @@ import Timmy from '@/components/models/timmy';
 
 let velocity = 0;
 
-const Player = ({ setPlayer }) => {
+const Player = ({ setPlayer, acceleration }) => {
   const {
     isPlaying,
     gameOver,
     isPaused,
-    acceleration,
-    setAcceleration,
   } = useGameContext();
   const [isJumping, setIsJumping] = useState(false);
   const runner = useRef();
@@ -42,7 +40,7 @@ const Player = ({ setPlayer }) => {
     if (!isPlaying) return velocity = 0;
 
     if (isPlaying && !gameOver && !isPaused) {
-      setAcceleration(acceleration + clock.getElapsedTime() / 1000);
+      acceleration.current = (acceleration.current + clock.getElapsedTime() / 1000);
     }
 
     if (isJumping && runner.current.position.y == 0.0) {
