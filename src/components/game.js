@@ -2,7 +2,7 @@ import { useState, useEffect, Suspense } from 'react';
 import { useRouter } from 'next/router';
 import { useGameContext } from '@/hooks/game-context';
 import { Canvas } from '@react-three/fiber';
-import { Stats, OrbitControls } from '@react-three/drei';
+import { Stats, OrbitControls, PerformanceMonitor, AdaptiveDpr, AdaptiveEvents } from '@react-three/drei';
 import { Perf } from 'r3f-perf';
 import World from '@/components/world';
 import Player from '@/components/player';
@@ -30,6 +30,7 @@ const Game = () => {
   const [player, setPlayer] = useState(null);
   const [colliders, setColliders] = useState([]);
   const [isLoaded, setIsLoaded] = useState(false);
+  const [dpr, setDpr] = useState(2);
   const router = useRouter();
 
   const resetGame = () => {
@@ -72,6 +73,7 @@ const Game = () => {
       <StartScreen resetGame={resetGame} isLoaded={isLoaded} />
       <Canvas
         flat
+        dpr={dpr}
         gl={{ antialias: false }}
         shadows
         camera={{
@@ -80,6 +82,9 @@ const Game = () => {
           far: 500
         }}
       >
+        <PerformanceMonitor onIncline={() => setDpr(2)} onDecline={() => setDpr(1)} />
+        <AdaptiveDpr pixelated />
+        <AdaptiveEvents />
         {router.query.debug && (
           <>
             <OrbitControls />
@@ -91,8 +96,8 @@ const Game = () => {
             <Player setPlayer={setPlayer} />
             <CheckColliders colliders={colliders} player={player} debug={router.query.debug === 'true'}/>
             <Colliders setColliders={setColliders} obstacles={obstacles} />
+            <World />
           </Suspense>
-          <World />
           <Score />
       </Canvas>
       <ScoreScreen />
