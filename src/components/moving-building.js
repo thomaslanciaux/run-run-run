@@ -4,13 +4,13 @@ import { useFrame } from '@react-three/fiber';
 import constants from '@/libs/constants';
 import Building from '@/components/models/building';
 import { getColor } from '@/libs/utils';
+import * as THREE from 'three';
 
 const { OFFSET } = constants;
 
 const MovingBuilding = (props) => {
   const ref = useRef();
   const { gameOver, isPaused, isPlaying, acceleration } = useGameContext();
-  const [buildingColor, setBuildingColor] = useState(props.color);
 
   useFrame((_state, delta) => {
     if (!isPlaying || gameOver || isPaused) return;
@@ -19,7 +19,7 @@ const MovingBuilding = (props) => {
 
     if (ref.current.position.z <= -OFFSET) {
       ref.current.position.z = OFFSET;
-      setBuildingColor(getColor());
+      ref.current.children[0].children[0].material.color = new THREE.Color(getColor());
     }
   });
 
@@ -29,7 +29,7 @@ const MovingBuilding = (props) => {
         scale={1}
         position={[12, -0.1, 0]}
         rotation-y={-Math.PI / 2}
-        color={buildingColor}
+        color={props.color}
       />
     </group>
   );

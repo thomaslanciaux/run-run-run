@@ -71,7 +71,8 @@ const Game = () => {
       <GameoverScreen resetGame={resetGame} />
       <StartScreen resetGame={resetGame} isLoaded={isLoaded} />
       <Canvas
-        gl={{ antialias: true }}
+        flat
+        gl={{ antialias: false }}
         shadows
         camera={{
           position: [-12, 3, -6],
