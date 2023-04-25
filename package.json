@@ -10,12 +10,12 @@
     "static": "next build && next export"
   },
   "dependencies": {
-    "@react-three/drei": "^9.65.3",
-    "@react-three/fiber": "^8.12.0",
+    "@react-three/drei": "^9.65.5",
+    "@react-three/fiber": "^8.12.2",
     "@react-three/postprocessing": "^2.7.1",
-    "eslint": "8.38.0",
-    "eslint-config-next": "13.3.0",
-    "next": "^13.3.0",
+    "eslint": "8.39.0",
+    "eslint-config-next": "13.3.1",
+    "next": "^13.3.1",
     "postprocessing": "^6.30.2",
     "r3f-perf": "^7.1.2",
     "react": "18.2.0",

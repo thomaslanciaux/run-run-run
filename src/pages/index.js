@@ -10,7 +10,7 @@ const CryptoRunner = () => {
   return (
     <>
       <Head>
-        <title>Run run run</title>
+        <title>👟 Crypto Runner</title>
         <meta name="description" content="Run run run" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />

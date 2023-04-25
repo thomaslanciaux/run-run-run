@@ -6,13 +6,10 @@ export const GameProvider = ({ children }) => {
   const [isPlaying, setIsPlaying] = useState(false);
   const [isPaused, setIsPaused] = useState(false);
   const [gameOver, setGameOver] = useState(false);
-  const [score, setScore] = useState(0);
 
   return (
     <GameContext.Provider
       value={{
-        score, 
-        setScore,
         isPlaying,
         setIsPlaying,
         isPaused,

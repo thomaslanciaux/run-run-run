@@ -1,13 +1,8 @@
 import { useGameContext } from '@/hooks/game-context';
 import { useRef, useEffect } from 'react';
 import { useFrame } from '@react-three/fiber';
-import constants from '@/libs/constants';
 
-const { OFFSET } = constants;
-
-let acceleration = 0;
-
-const MovingItem = ({ children, position, setColliders, }) => {
+const MovingItem = ({ children, position, setColliders, offset, acceleration }) => {
   const ref = useRef();
   const { gameOver, isPaused, isPlaying } = useGameContext();
 
@@ -15,13 +10,13 @@ const MovingItem = ({ children, position, setColliders, }) => {
     if (setColliders) setColliders(prevState => [...prevState, ref]);
   }, []); // eslint-disable-line
 
-  useFrame(({ clock }, delta) => {
-    if (gameOver || !isPlaying) acceleration = 0;
+  useFrame((_state, delta) => {
     if (!isPlaying || gameOver || isPaused) return;
-    acceleration += clock.getElapsedTime() / 100;
-    ref.current.position.z -= ((delta * 15) + acceleration);
-    if (ref.current.position.z <= -OFFSET) {
-      ref.current.position.z = OFFSET;
+
+    ref.current.position.z -= (delta * 15) + acceleration.current;
+
+    if (ref.current.position.z <= -offset) {
+      ref.current.position.z = offset + (acceleration.current * 1300);
     }
   });
 
