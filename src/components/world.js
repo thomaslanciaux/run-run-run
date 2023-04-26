@@ -38,11 +38,11 @@ const World = ({ acceleration }) => (
         />
       ))}
     </group>
-    <mesh rotation-x={-Math.PI / 2} receiveShadow position={[15, -0.1, 0]}>
+    <mesh rotation-x={-Math.PI / 2} receiveShadow position={[15, -0.1, 24]}>
       <boxGeometry args={[35, 120, 0.3, 1, 1]} />
       <meshStandardMaterial color="#333333" roughness={0.8} />
     </mesh>
-    <mesh rotation-x={-Math.PI / 2} receiveShadow position={[0, -0.3, 0]}>
+    <mesh rotation-x={-Math.PI / 2} receiveShadow position={[0, -0.3, 24]}>
       <planeGeometry args={[120, 250]} />
       <meshStandardMaterial color="#000000" roughness={0.9} metalness={0} />
     </mesh>
