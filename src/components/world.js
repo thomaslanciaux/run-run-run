@@ -16,8 +16,8 @@ const World = ({ acceleration }) => (
     <Environment preset="dawn" />
     <directionalLight
       castShadow
-      color="white"
-      position={[-25, 15, 15]}
+      color="orange"
+      position={[15, 40, 20]}
       shadow-camera-bottom={-80}
       shadow-camera-top={80}
       shadow-camera-left={-80}
@@ -38,11 +38,11 @@ const World = ({ acceleration }) => (
         />
       ))}
     </group>
-    <mesh rotation-x={-Math.PI / 2} receiveShadow position={[15, -0.1, 24]}>
+    <mesh rotation-x={-Math.PI / 2} receiveShadow castShadow position={[15, -0.1, 24]}>
       <boxGeometry args={[35, 120, 0.3, 1, 1]} />
       <meshStandardMaterial color="#333333" roughness={0.8} />
     </mesh>
-    <mesh rotation-x={-Math.PI / 2} receiveShadow position={[0, -0.3, 24]}>
+    <mesh rotation-x={-Math.PI / 2} receiveShadow position={[0, -0.15, 24]}>
       <planeGeometry args={[120, 120]} />
       <meshStandardMaterial color="#000000" roughness={0.9} metalness={0} />
     </mesh>
