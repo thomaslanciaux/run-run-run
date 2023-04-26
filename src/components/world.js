@@ -22,7 +22,7 @@ const World = ({ acceleration }) => (
       shadow-camera-top={80}
       shadow-camera-left={-80}
       shadow-camera-right={80}
-      shadow-mapSize={2048}
+      shadow-mapSize={512}
       shadow-bias={-0.0001}
       intensity={0.5}
     />
@@ -38,7 +38,7 @@ const World = ({ acceleration }) => (
         />
       ))}
     </group>
-    <mesh rotation-x={-Math.PI / 2} receiveShadow castShadow position={[15, -0.1, 24]}>
+    <mesh rotation-x={-Math.PI / 2} receiveShadow castShadow position={[14, -0.1, 24]}>
       <boxGeometry args={[35, 120, 0.3, 1, 1]} />
       <meshStandardMaterial color="#333333" roughness={0.8} />
     </mesh>
