@@ -78,7 +78,7 @@ const Game = () => {
         {router.query.debug && (
           <>
             <OrbitControls />
-            <Stats showPanel={2} />
+            <Stats />
             <Perf position="bottom-left" antialias={false} />
           </>
         )}
