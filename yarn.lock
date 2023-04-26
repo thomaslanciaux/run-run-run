@@ -2268,11 +2268,6 @@ readdirp@~3.6.0:
   dependencies:
     picomatch "^2.2.1"
 
-realism-effects@^1.0.19:
-  version "1.0.19"
-  resolved "https://registry.yarnpkg.com/realism-effects/-/realism-effects-1.0.19.tgz#30e00d40c685f952e291ce1401d34213d4269231"
-  integrity sha512-g7YNv91PNQWvtuhN69zZ+WFdGjFqsSWOuOiNlifPd3Ct+oaMD9kxr7s+VNcrScBlUnzxl2Ssm9CbGn6fozYE8g==
-
 regenerator-runtime@^0.13.11:
   version "0.13.11"
   resolved "https://registry.yarnpkg.com/regenerator-runtime/-/regenerator-runtime-0.13.11.tgz#f6dca3e7ceec20590d07ada785636a90cdca17f9"
