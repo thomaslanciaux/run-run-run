@@ -12,7 +12,6 @@ const floorItems = Array.from({ length: FLOOR_ITEMS }, (_, index) => ({
 
 const World = ({ acceleration }) => (
   <>
-    <ambientLight intensity={0.5} />
     <fog args={['#bfd6e2', 80, 100]} attach="fog" />
     <Environment preset="dawn" />
     <directionalLight
@@ -39,13 +38,13 @@ const World = ({ acceleration }) => (
         />
       ))}
     </group>
-    <mesh rotation-x={-Math.PI / 2} receiveShadow position={[16, -0.1, 0]}>
+    <mesh rotation-x={-Math.PI / 2} receiveShadow position={[15, -0.1, 0]}>
       <boxGeometry args={[35, 120, 0.3, 1, 1]} />
-      <meshStandardMaterial color="#666666" roughness={0.8} metalness={0} />
+      <meshStandardMaterial color="#333333" roughness={0.8} />
     </mesh>
-    <mesh rotation-x={-Math.PI / 2} receiveShadow position={[0, -0.5, 0]}>
-      <planeGeometry args={[1000, 1000]} />
-      <meshStandardMaterial color="#333333" roughness={0.9} metalness={0} />
+    <mesh rotation-x={-Math.PI / 2} receiveShadow position={[0, -0.3, 0]}>
+      <planeGeometry args={[120, 250]} />
+      <meshStandardMaterial color="#000000" roughness={0.9} metalness={0} />
     </mesh>
     <Sky
     />

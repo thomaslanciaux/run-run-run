@@ -57,7 +57,7 @@ const Player = ({ setPlayer, acceleration }) => {
 
   return (
     <group ref={runner} position={[0, 0, -4]}>
-      <Timmy scale={0.8} position={[0, 0, 0]} isJumping={isJumping} />
+      <Timmy scale={0.8} position={[0, 0.03, 0]} isJumping={isJumping} />
     </group>
   );
 };
