@@ -18,13 +18,13 @@ const World = ({ acceleration }) => (
     <directionalLight
       castShadow
       color="white"
-      position={[-20, 15, 15]}
+      position={[-25, 15, 15]}
       shadow-camera-bottom={-80}
       shadow-camera-top={80}
       shadow-camera-left={-80}
       shadow-camera-right={80}
-      shadow-mapSize={512}
-      shadow-bias={-0.001}
+      shadow-mapSize={2048}
+      shadow-bias={-0.0001}
       intensity={0.5}
     />
     <group position={[0, 0.25, 24]}>

@@ -4,8 +4,8 @@ import { BinInstances, Bin } from '@/components/models/bin';
 import { MailboxInstances, Mailbox } from '@/components/models/mailbox';
 import { ElectricBoxInstances, ElectricBox } from '@/components/models/box';
 
-const Colliders = ({ setColliders, obstacles, acceleration }) => {
-  return (
+const Colliders = ({ acceleration, obstacles }) => {
+  return obstacles.length && (
     <Instances>
       <BinInstances>
         <MailboxInstances>
@@ -13,7 +13,6 @@ const Colliders = ({ setColliders, obstacles, acceleration }) => {
             {obstacles.map(({ positionZ, type }, index) => (
               <MovingItem
                 key={index}
-                setColliders={setColliders}
                 position={[0, 0.5, positionZ]}
                 offset={(obstacles[obstacles.length - 1].positionZ / 2) + 1}
                 acceleration={acceleration}

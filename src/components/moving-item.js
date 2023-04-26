@@ -2,9 +2,9 @@ import { useGameContext } from '@/hooks/game-context';
 import { useRef, useEffect } from 'react';
 import { useFrame } from '@react-three/fiber';
 
-const MovingItem = ({ children, position, setColliders, offset, acceleration }) => {
+const MovingItem = ({ children, position, offset, acceleration }) => {
   const ref = useRef();
-  const { gameOver, isPaused, isPlaying } = useGameContext();
+  const { gameOver, isPaused, isPlaying, setColliders } = useGameContext();
 
   useEffect(() => {
     if (setColliders) setColliders(prevState => [...prevState, ref]);

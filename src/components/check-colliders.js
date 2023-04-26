@@ -2,8 +2,8 @@ import { useFrame } from '@react-three/fiber';
 import { useGameContext } from '@/hooks/game-context';
 import * as THREE from 'three';
 
-const CheckColliders = ({ colliders, player, debug = false }) => {
-  const { setGameOver, gameOver, isPlaying, isPaused } = useGameContext();
+const CheckColliders = ({ debug = false }) => {
+  const { setGameOver, gameOver, isPlaying, isPaused, player, colliders } = useGameContext();
 
   useFrame(() => {
     if (!isPlaying || gameOver || isPaused) return;

@@ -14,7 +14,7 @@ const Player = ({ setPlayer, acceleration }) => {
   const [isJumping, setIsJumping] = useState(false);
   const runner = useRef();
 
-  setPlayer(runner);
+  useEffect(() => setPlayer(runner));
 
   const keyboardEvent = (event, bool) => {
     if (event?.key !== ' ' && event?.key !== 'ArrowUp') return;
