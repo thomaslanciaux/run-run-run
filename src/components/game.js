@@ -2,12 +2,7 @@ import { useEffect, Suspense, useRef } from 'react';
 import { useRouter } from 'next/router';
 import { useGameContext } from '@/hooks/game-context';
 import { Canvas } from '@react-three/fiber';
-import {
-  AdaptiveDpr,
-  AdaptiveEvents,
-  OrbitControls,
-  Stats,
-} from '@react-three/drei';
+import { AdaptiveDpr, AdaptiveEvents, OrbitControls, } from '@react-three/drei';
 import { Perf } from 'r3f-perf';
 import World from '@/components/world';
 import Player from '@/components/player';
@@ -48,7 +43,7 @@ const Game = () => {
   };
 
   useEffect(() => {
-    window.addEventListener('blur', () => setIsPaused(true));
+    window.addEventListener('blur', () => !router.query.debug && setIsPaused(true));
     return () => {
       window.removeEventListener('blur', () => setIsPaused(true));
     };
@@ -78,7 +73,6 @@ const Game = () => {
         {router.query.debug && (
           <>
             <OrbitControls />
-            <Stats />
             <Perf position="bottom-left" antialias={false} />
           </>
         )}

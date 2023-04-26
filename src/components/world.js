@@ -27,7 +27,7 @@ const World = ({ acceleration }) => (
       shadow-bias={-0.0001}
       intensity={0.5}
     />
-    <group position={[0, 0.25, 24]}>
+    <group position={[0, 0, 24]}>
       {floorItems.map(({ positionZ, color }, index) => (
         <MovingBuilding
           key={index}
@@ -39,7 +39,11 @@ const World = ({ acceleration }) => (
         />
       ))}
     </group>
-    <mesh rotation-x={-Math.PI / 2} receiveShadow position={[0, 0, 0]}>
+    <mesh rotation-x={-Math.PI / 2} receiveShadow position={[16, -0.1, 0]}>
+      <boxGeometry args={[35, 120, 0.3, 1, 1]} />
+      <meshStandardMaterial color="#666666" roughness={0.8} metalness={0} />
+    </mesh>
+    <mesh rotation-x={-Math.PI / 2} receiveShadow position={[0, -0.5, 0]}>
       <planeGeometry args={[1000, 1000]} />
       <meshStandardMaterial color="#333333" roughness={0.9} metalness={0} />
     </mesh>
