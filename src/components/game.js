@@ -1,4 +1,4 @@
-import { useState, useEffect, useLayoutEffect, Suspense, useRef } from 'react';
+import { useEffect, Suspense, useRef } from 'react';
 import { useRouter } from 'next/router';
 import { useGameContext } from '@/hooks/game-context';
 import { Canvas } from '@react-three/fiber';
@@ -6,9 +6,7 @@ import {
   AdaptiveDpr,
   AdaptiveEvents,
   OrbitControls,
-  PerformanceMonitor,
   Stats,
-  useProgress,
 } from '@react-three/drei';
 import { Perf } from 'r3f-perf';
 import World from '@/components/world';
@@ -22,15 +20,12 @@ import CheckColliders from '@/components/check-colliders';
 import { generateObstacles } from '@/libs/utils';
 
 const obstacles = generateObstacles();
-let renderCount = 0;
 
 const Game = () => {
-  console.log(renderCount++);
   const {
     setIsPaused,
     setIsPlaying,
     setGameOver,
-    player,
     setPlayer,
     colliders,
     setColliders,
@@ -45,6 +40,7 @@ const Game = () => {
     acceleration.current = 0;
     setIsPlaying(true);
     setGameOver(false);
+    setIsPaused(false);
     if (!colliders.length) return;
     for (let i = 0; i < colliders.length; i++) {
       colliders[i].current.position.z = obstacles[i].positionZ;
