@@ -44,7 +44,7 @@ const World = ({ acceleration }) => (
     </mesh>
     <mesh rotation-x={-Math.PI / 2} receiveShadow position={[0, -0.15, 24]}>
       <planeGeometry args={[120, 120]} />
-      <meshStandardMaterial color="#000000" roughness={0.9} metalness={0} />
+      <meshStandardMaterial color="#000000" roughness={0.8} />
     </mesh>
     <Sky
     />
