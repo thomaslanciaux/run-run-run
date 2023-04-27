@@ -2,7 +2,7 @@ import { useEffect, Suspense, useRef } from 'react';
 import { useRouter } from 'next/router';
 import { useGameContext } from '@/hooks/game-context';
 import { Canvas } from '@react-three/fiber';
-import { AdaptiveDpr, AdaptiveEvents, OrbitControls, } from '@react-three/drei';
+import { AdaptiveDpr, AdaptiveEvents, OrbitControls } from '@react-three/drei';
 import { Perf } from 'r3f-perf';
 import World from '@/components/world';
 import Player from '@/components/player';
@@ -21,14 +21,13 @@ const Game = () => {
     setIsPaused,
     setIsPlaying,
     setGameOver,
-    setPlayer,
     colliders,
-    setColliders,
   } = useGameContext();
 
+  const router = useRouter();
   const score = useRef(0);
   const acceleration = useRef(0);
-  const router = useRouter();
+  const player = useRef(null)
 
   const resetGame = () => {
     score.current = 0;
@@ -55,7 +54,7 @@ const Game = () => {
     `}>
       <PausedScreen />
       <GameoverScreen resetGame={resetGame} score={score} />
-      <StartScreen resetGame={resetGame} />
+      <StartScreen resetGame={resetGame} player={player} />
       <Canvas
         flat
         gl={{
@@ -77,13 +76,9 @@ const Game = () => {
           </>
         )}
         <Suspense fallback={null}>
-          <Player setPlayer={setPlayer} acceleration={acceleration} />
-          <CheckColliders debug={router.query.debug === 'true'} />
-          <Colliders
-            setColliders={setColliders}
-            obstacles={obstacles}
-            acceleration={acceleration}
-          />
+          <Player acceleration={acceleration} ref={player} />
+          <CheckColliders debug={router.query.debug === 'true'} player={player} />
+          <Colliders obstacles={obstacles} acceleration={acceleration} />
           <World acceleration={acceleration} />
           <Score score={score} />
         </Suspense>

@@ -14,17 +14,18 @@ const World = ({ acceleration }) => (
   <>
     <fog args={['#bfd6e2', 40, 60]} attach="fog" />
     <Environment preset="dawn" />
+    <ambientLight color="white" intensity={0.5} />
     <directionalLight
       castShadow
       color="orange"
-      position={[15, 40, 20]}
+      position={[-20, 30, 20]}
       shadow-camera-bottom={-80}
       shadow-camera-top={80}
       shadow-camera-left={-80}
       shadow-camera-right={80}
       shadow-mapSize={512}
       shadow-bias={-0.0001}
-      intensity={0.5}
+      intensity={0.8}
     />
     <group position={[0, 0, 24]}>
       {floorItems.map(({ positionZ, color }, index) => (

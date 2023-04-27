@@ -6,7 +6,6 @@ export const GameProvider = ({ children }) => {
   const [isPlaying, setIsPlaying] = useState(false);
   const [isPaused, setIsPaused] = useState(false);
   const [gameOver, setGameOver] = useState(false);
-  const [player, setPlayer] = useState();
   const [colliders, setColliders] = useState([]);
 
   return (
@@ -18,8 +17,6 @@ export const GameProvider = ({ children }) => {
         setIsPaused,
         gameOver,
         setGameOver,
-        player,
-        setPlayer,
         colliders,
         setColliders,
       }}
