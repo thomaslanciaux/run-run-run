@@ -14,7 +14,7 @@ const Timmy = (props) => {
     actions['DEAD'].setLoop(THREE.LoopOnce);
     actions['DEAD'].clampWhenFinished = true;
     actions['RUN'].timeScale = 1.4;
-    actions['DEAD'].timeScale = 2;
+    actions['DEAD'].timeScale = 1;
   }, [actions]);
 
   useEffect(() => {

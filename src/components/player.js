@@ -11,6 +11,7 @@ const Player = forwardRef(function Player({ acceleration }, player) {
     gameOver,
     isPaused,
   } = useGameContext();
+
   const [isJumping, setIsJumping] = useState(false);
 
   const keyboardEvent = (event, bool) => {

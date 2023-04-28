@@ -7,7 +7,8 @@ const MovingItem = ({ children, position, offset, acceleration }) => {
   const { gameOver, isPaused, isPlaying, setColliders } = useGameContext();
 
   useEffect(() => {
-    if (setColliders) setColliders(prevState => [...prevState, ref]);
+    if (!setColliders) return;
+    setColliders(prevState => [...prevState, ref]);
   }, []); // eslint-disable-line
 
   useFrame((_state, delta) => {
