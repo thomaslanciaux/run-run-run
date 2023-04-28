@@ -336,15 +336,14 @@
     suspend-react "^0.0.8"
     zustand "^3.7.1"
 
-"@react-three/postprocessing@^2.8.0":
-  version "2.8.0"
-  resolved "https://registry.yarnpkg.com/@react-three/postprocessing/-/postprocessing-2.8.0.tgz#8b7448d1426d854c0695da621eef72e37762ce41"
-  integrity sha512-rQcKqq5UTtwlazijW2vtK6y/6a66fACPmhQVtkoLMns4cqOL0NtKfByqNP6YEzEd91odIp86T8UkhKUs0iqT7g==
+"@react-three/postprocessing@^2.9.0":
+  version "2.9.0"
+  resolved "https://registry.yarnpkg.com/@react-three/postprocessing/-/postprocessing-2.9.0.tgz#6f89c92f0c4229db98b4619424f84dfb63b4ce84"
+  integrity sha512-E7Czcepd6yzmLbaRVJXVZ7yAi5/9OuuENxSJv5ZSF8Z/9VXOTcGgUXwVZ9JjLCJHui9ZOVB0Rucrq3Jz2I1klw==
   dependencies:
-    postprocessing "^6.30.1"
-    react-merge-refs "^1.1.0"
+    postprocessing "^6.30.2"
     screen-space-reflections "2.5.0"
-    three-stdlib "^2.8.11"
+    three-stdlib "^2.21.10"
 
 "@rushstack/eslint-patch@^1.1.3":
   version "1.2.0"
@@ -2162,7 +2161,7 @@ postcss@^8.4.23:
     picocolors "^1.0.0"
     source-map-js "^1.0.2"
 
-postprocessing@^6.30.1, postprocessing@^6.30.2:
+postprocessing@^6.30.2:
   version "6.30.2"
   resolved "https://registry.yarnpkg.com/postprocessing/-/postprocessing-6.30.2.tgz#8cfb5561bfce63c983fae5d2cd8efa5bbd04fe6d"
   integrity sha512-Vt77s5DkHyUOV4bmk10J46DHJLglBfIo9ARPI0o62UIAx9omANfuPJTKiLVoYlC1ApkV9y3ldBDipF3IldB7YA==
@@ -2610,7 +2609,7 @@ three-stdlib@^2.21.10:
     potpack "^1.0.1"
     zstddec "^0.0.2"
 
-three-stdlib@^2.21.8, three-stdlib@^2.8.11:
+three-stdlib@^2.21.8:
   version "2.21.8"
   resolved "https://registry.yarnpkg.com/three-stdlib/-/three-stdlib-2.21.8.tgz#37b11b7f62d07b10742c212153b14db21433b3c6"
   integrity sha512-kqisiKvO4mSy59v5vWqBQSH8famLxp7Z51LxpMJI9GwDxqODaW02rhIwmjYDEzZWNFpjZpoDHVGbdpeHf8h3SA==
@@ -2627,10 +2626,10 @@ three-stdlib@^2.21.8, three-stdlib@^2.8.11:
     potpack "^1.0.1"
     zstddec "^0.0.2"
 
-three@^0.152.0:
-  version "0.152.0"
-  resolved "https://registry.yarnpkg.com/three/-/three-0.152.0.tgz#a50034af675c636322135b6bb829d6e7e3a6213d"
-  integrity sha512-uvKoYo4b2bnqzsR4RJFuWecxwMKcgT1nFNmiWooCNr6AxZLCtfkj/xcfFgoi5mFopSVorh7bnvTHPfeW8DINGg==
+three@^0.152.1:
+  version "0.152.1"
+  resolved "https://registry.yarnpkg.com/three/-/three-0.152.1.tgz#943f1056b4dd140a44ec2d0c8f8b035f483e0f20"
+  integrity sha512-6812YuxSnsCQ3DgI27jtuwIW0cgn/ooVshPIcKpuPQ2kygeDTOQtRkYffl4E1IcQElEyHbPjyQznE2jti7fXoA==
 
 tiny-glob@^0.2.9:
   version "0.2.9"

@@ -17,6 +17,7 @@ import { generateObstacles } from '@/libs/utils';
 const obstacles = generateObstacles();
 
 const Game = () => {
+  console.log('RENDER GAME');
   const {
     setIsPaused,
     setIsPlaying,
