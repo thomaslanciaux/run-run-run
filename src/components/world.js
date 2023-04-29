@@ -4,6 +4,7 @@ import constants from '@/libs/constants';
 import { getColor } from '@/libs/utils';
 import { useFrame } from '@react-three/fiber';
 import { useGameContext } from '@/hooks/game-context';
+import * as THREE from 'three';
 
 const { OFFSET, FLOOR_ITEMS } = constants;
 
@@ -14,14 +15,21 @@ const floorItems = Array.from({ length: FLOOR_ITEMS }, (_, index) => ({
 
 const World = ({ acceleration }) => {
   const { isPlaying, gameOver, isPaused } = useGameContext();
-  const [normalTexture] = useNormalTexture(27, {
+  const [pavementNormalMap] = useNormalTexture(27, {
     offset: [0, 0],
     repeat: [12, 120],
   });
 
+  const [roadNormalMap] = useNormalTexture(39, {
+    offset: [0, 0],
+    repeat: [120, 120],
+  });
+
   useFrame((_state, delta) => {
     if (!isPlaying || gameOver || isPaused) return;
-    normalTexture.offset.y -= (delta * 15) + acceleration.current;
+    [pavementNormalMap, roadNormalMap].map(normalMap =>
+      normalMap.offset.y -= (delta * 15) + acceleration.current
+    );
   });
 
   return (
@@ -55,15 +63,21 @@ const World = ({ acceleration }) => {
       </group>
       <mesh rotation-x={-Math.PI / 2} receiveShadow castShadow position={[14, -0.1, 24]}>
         <boxGeometry args={[35, 120, 0.3, 1, 1]} />
-        <meshStandardMaterial 
+        <meshStandardMaterial
           color="#333333"
           roughness={0.9}
-          normalMap={normalTexture}
+          normalMap={pavementNormalMap}
+          normalScale={new THREE.Vector2(10, 10)}
         />
       </mesh>
       <mesh rotation-x={-Math.PI / 2} receiveShadow position={[0, -0.15, 24]}>
         <planeGeometry args={[120, 120]} />
-        <meshStandardMaterial color="#222222" roughness={0.9} />
+        <meshStandardMaterial
+          color="#111111"
+          roughness={0.9}
+          normalMap={roadNormalMap}
+          normalScale={new THREE.Vector2(5, 5)}
+        />
       </mesh>
       <Sky />
     </>
