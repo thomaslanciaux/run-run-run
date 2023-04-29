@@ -56,9 +56,8 @@ const Game = () => {
       <GameoverScreen resetGame={resetGame} score={score} />
       <StartScreen resetGame={resetGame} player={player} />
       <Canvas
-        flat
         gl={{
-          antialias: false,
+          // antialias: false,
         }}
         shadows
         camera={{

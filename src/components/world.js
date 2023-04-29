@@ -12,20 +12,20 @@ const floorItems = Array.from({ length: FLOOR_ITEMS }, (_, index) => ({
 
 const World = ({ acceleration }) => (
   <>
-    <fog args={['#bfd6e2', 40, 60]} attach="fog" />
+    <fog args={['#bfd6e2', 60, 120]} attach="fog" />
     <Environment preset="dawn" />
     <ambientLight color="white" intensity={0.5} />
     <directionalLight
       castShadow
       color="orange"
-      position={[-20, 30, 20]}
+      position={[-10, 30, 20]}
       shadow-camera-bottom={-80}
       shadow-camera-top={80}
       shadow-camera-left={-80}
       shadow-camera-right={80}
-      shadow-mapSize={512}
+      shadow-mapSize={1024}
       shadow-bias={-0.0001}
-      intensity={0.8}
+      intensity={1}
     />
     <group position={[0, 0, 24]}>
       {floorItems.map(({ positionZ, color }, index) => (
@@ -45,10 +45,9 @@ const World = ({ acceleration }) => (
     </mesh>
     <mesh rotation-x={-Math.PI / 2} receiveShadow position={[0, -0.15, 24]}>
       <planeGeometry args={[120, 120]} />
-      <meshStandardMaterial color="#000000" roughness={0.8} />
+      <meshStandardMaterial color="#000000" roughness={0.9} />
     </mesh>
-    <Sky
-    />
+    <Sky />
   </>
 );
 
