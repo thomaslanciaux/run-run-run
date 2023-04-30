@@ -47,33 +47,42 @@ const World = ({ acceleration }) => {
         shadow-camera-right={80}
         shadow-mapSize={1024}
         shadow-bias={-0.0001}
-        intensity={0.8}
+        intensity={0.5}
       />
       <group position={[0, 0, 24]}>
         {floorItems.map(({ positionZ, color }, index) => (
           <MovingBuilding
             key={index}
             scale={1}
-            position={[0, -0.1, positionZ]}
+            position={[0, 0.2, positionZ]}
             rotation-y={-Math.PI / 2}
             color={color}
             acceleration={acceleration}
           />
         ))}
       </group>
-      <mesh rotation-x={-Math.PI / 2} receiveShadow castShadow position={[14, -0.1, 24]}>
+      <mesh
+        position={[14, -0.1, 24]}
+        rotation-x={-Math.PI / 2}
+        receiveShadow
+        castShadow
+      >
         <boxGeometry args={[35, 120, 0.3, 1, 1]} />
         <meshStandardMaterial
-          color="#333333"
-          roughness={0.9}
+          color="#444444"
+          roughness={1}
           normalMap={pavementNormalMap}
           normalScale={new THREE.Vector2(10, 10)}
         />
       </mesh>
-      <mesh rotation-x={-Math.PI / 2} receiveShadow position={[0, -0.15, 24]}>
+      <mesh
+        position={[0, -0.15, 24]}
+        rotation-x={-Math.PI / 2}
+        receiveShadow
+      >
         <planeGeometry args={[120, 120]} />
         <meshStandardMaterial
-          color="#111111"
+          color="#333333"
           roughness={0.9}
           normalMap={roadNormalMap}
           normalScale={new THREE.Vector2(5, 5)}
