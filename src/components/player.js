@@ -37,7 +37,7 @@ const Player = forwardRef(function Player({ acceleration }, player) {
   useFrame(({ clock }, delta) => {
     if (!isPlaying) return velocity = 0;
 
-    if (isPlaying && !gameOver && !isPaused) {
+    if (isPlaying && !gameOver && !isPaused && acceleration.current < 0.13) {
       acceleration.current = (acceleration.current + clock.getElapsedTime() / 1000);
     }
 

@@ -17,7 +17,7 @@ const MovingItem = ({ children, position, offset, acceleration }) => {
     ref.current.position.z -= (delta * 15) + acceleration.current;
 
     if (ref.current.position.z <= -offset) {
-      ref.current.position.z = offset + (acceleration.current * 1300 + 1);
+      ref.current.position.z = offset + acceleration.current * 1000;
     }
   });
 

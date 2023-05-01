@@ -57,7 +57,7 @@ const Game = () => {
       <StartScreen resetGame={resetGame} player={player} />
       <Canvas
         gl={{
-          // antialias: false,
+          antialias: false,
         }}
         shadows
         camera={{
