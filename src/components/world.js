@@ -1,10 +1,14 @@
-import { Environment, Sky, useNormalTexture } from '@react-three/drei';
+import { useEffect } from 'react';
+import { Environment, Sky } from '@react-three/drei';
 import MovingBuilding from '@/components/moving-building';
 import constants from '@/libs/constants';
 import { getColor } from '@/libs/utils';
-import { useFrame } from '@react-three/fiber';
+import { useFrame, useLoader } from '@react-three/fiber';
 import { useGameContext } from '@/hooks/game-context';
-import * as THREE from 'three';
+import { TextureLoader, RepeatWrapping, Vector2 } from 'three';
+
+import roadNormal from '../../public/textures/190_norm.JPG';
+import pavementNormal from '../../public/textures/178_norm.JPG';
 
 const { OFFSET, FLOOR_ITEMS } = constants;
 
@@ -15,15 +19,19 @@ const floorItems = Array.from({ length: FLOOR_ITEMS }, (_, index) => ({
 
 const World = ({ acceleration }) => {
   const { isPlaying, gameOver, isPaused } = useGameContext();
-  const [pavementNormalMap] = useNormalTexture(27, {
-    offset: [0, 0],
-    repeat: [12, 120],
-  });
 
-  const [roadNormalMap] = useNormalTexture(39, {
-    offset: [0, 0],
-    repeat: [120, 120],
-  });
+  const [roadNormalMap, pavementNormalMap] = useLoader(TextureLoader, [
+    roadNormal.src,
+    pavementNormal.src
+  ]);
+
+  useEffect(() => {
+    [roadNormalMap, pavementNormalMap].forEach(normalMap =>
+      [wrapS, wrapT].forEach(item => normalMap[item] = RepeatWrapping)
+    );
+    roadNormalMap.repeat.set(120, 120);
+    pavementNormalMap.repeat.set(12, 120);
+  }, [roadNormalMap, pavementNormalMap]);
 
   useFrame((_state, delta) => {
     if (!isPlaying || gameOver || isPaused) return;
@@ -72,7 +80,7 @@ const World = ({ acceleration }) => {
           color="#444444"
           roughness={1}
           normalMap={pavementNormalMap}
-          normalScale={new THREE.Vector2(10, 10)}
+          normalScale={new Vector2(10, 10)}
         />
       </mesh>
       <mesh
@@ -85,7 +93,7 @@ const World = ({ acceleration }) => {
           color="#333333"
           roughness={0.9}
           normalMap={roadNormalMap}
-          normalScale={new THREE.Vector2(5, 5)}
+          normalScale={new Vector2(5, 5)}
         />
       </mesh>
       <Sky />
