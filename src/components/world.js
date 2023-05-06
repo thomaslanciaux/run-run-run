@@ -26,9 +26,10 @@ const World = ({ acceleration }) => {
   ]);
 
   useEffect(() => {
-    [roadNormalMap, pavementNormalMap].forEach(normalMap =>
-      [wrapS, wrapT].forEach(item => normalMap[item] = RepeatWrapping)
-    );
+    [roadNormalMap, pavementNormalMap].forEach(normalMap => {
+      normalMap.wrapS = RepeatWrapping;
+      normalMap.wrapT = RepeatWrapping;
+    });
     roadNormalMap.repeat.set(120, 120);
     pavementNormalMap.repeat.set(12, 120);
   }, [roadNormalMap, pavementNormalMap]);
