@@ -42,7 +42,7 @@ const Player = forwardRef(function Player({ acceleration }, player) {
     }
 
     if (isJumping && player.current.position.y == 0.0) {
-      velocity = 20;
+      velocity = 17;
     }
 
     const jumpAcceleration = -85 * delta;
