@@ -1,8 +1,8 @@
 import { useFrame } from '@react-three/fiber';
 import { useGameContext } from '@/hooks/game-context';
-import * as THREE from 'three';
+import { Box3, Vector3 } from 'three';
 
-const CheckColliders = ({ debug = false, player }) => {
+const CheckColliders = ({ player }) => {
   const { setGameOver, gameOver, isPlaying, isPaused, colliders } = useGameContext();
 
   useFrame(() => {
@@ -10,11 +10,9 @@ const CheckColliders = ({ debug = false, player }) => {
 
     for (let i = 0; i < colliders.length; i++) {
       const collider = colliders[i];
-      const bbox = new THREE.Box3().setFromObject(collider.current);
-      const bboxSize = new THREE.Vector3(bbox);
+      const bbox = new Box3().setFromObject(collider.current);
+      const bboxSize = new Vector3(bbox);
       bbox.getSize(bboxSize);
-
-      if (debug) return;
 
       if (
         collider.current.position.z <= player?.current?.position?.z + 0.5 &&
