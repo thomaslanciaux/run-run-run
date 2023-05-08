@@ -17,7 +17,7 @@ const Player = forwardRef(function Player({ acceleration }, player) {
   const keyboardEvent = (event, bool) => {
     if (event?.key !== ' ' && event?.key !== 'ArrowUp') return;
     event.preventDefault();
-    setIsJumping(!gameOver && !isPaused && bool);
+    setIsJumping(!gameOver && bool);
   };
 
   useEffect(() => {
