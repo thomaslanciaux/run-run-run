@@ -18,7 +18,7 @@ export function Building1Instances({ children, ...props }) {
     [nodes]
   )
   return (
-    <Merged meshes={instances} {...props}>
+    <Merged meshes={instances} {...props} receiveShadow castShadow>
       {(instances) => <context.Provider value={instances}>
         {children}
       </context.Provider>}

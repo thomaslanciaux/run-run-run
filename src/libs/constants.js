@@ -1,6 +1,6 @@
 const constants = {
-  OFFSET: 60,
-  FLOOR_ITEMS: 8,
+  OFFSET: 240,
+  FLOOR_ITEMS: 48,
 };
 
 export default constants;
