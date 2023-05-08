@@ -18,6 +18,7 @@ const Ground = ({ acceleration }) => {
     [roadNormalMap, pavementNormalMap].forEach(normalMap => {
       normalMap.wrapS = RepeatWrapping;
       normalMap.wrapT = RepeatWrapping;
+      normalMap.repeat.set(1, 1);
     });
     roadNormalMap.repeat.set(120, 120);
     pavementNormalMap.repeat.set(12, 120);

@@ -13,7 +13,7 @@ const { OFFSET, FLOOR_ITEMS } = constants;
 
 const floorItems = Array.from({ length: FLOOR_ITEMS }, (_, index) => ({
   positionZ: -OFFSET + (index / FLOOR_ITEMS) * OFFSET * 2,
-  type: Math.floor(Math.random() * 5),
+  type: Math.floor(Math.random() * 6),
   color: getColor()
 }));
 
@@ -35,7 +35,7 @@ const World = ({ acceleration }) => {
         shadow-bias={-0.0001}
         intensity={0.5}
       />
-      <group position={[16, 0, 24]}>
+      <group position={[18, 0, 24]}>
         <Building1Instances>
           <Building2Instances>
             <Building3Instances>
