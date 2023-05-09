@@ -13,7 +13,7 @@ const { OFFSET, FLOOR_ITEMS } = constants;
 
 const floorItems = Array.from({ length: FLOOR_ITEMS }, (_, index) => ({
   positionZ: -OFFSET + (index / FLOOR_ITEMS) * OFFSET * 2,
-  type: Math.floor(Math.random() * 6),
+  type: Math.floor(Math.random() * 5),
   color: getColor()
 }));
 
