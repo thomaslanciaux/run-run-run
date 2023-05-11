@@ -1,25 +1,23 @@
 import { useGameContext } from '@/hooks/game-context';
 import { useFrame } from '@react-three/fiber';
-import { useRef, useEffect, useState } from 'react';
+import { useEffect, useState, forwardRef } from 'react';
 import Timmy from '@/components/models/timmy';
 
 let velocity = 0;
 
-const Player = ({ setPlayer, acceleration }) => {
+const Player = forwardRef(function Player({ acceleration }, player) {
   const {
     isPlaying,
     gameOver,
     isPaused,
   } = useGameContext();
-  const [isJumping, setIsJumping] = useState(false);
-  const runner = useRef();
 
-  setPlayer(runner);
+  const [isJumping, setIsJumping] = useState(false);
 
   const keyboardEvent = (event, bool) => {
     if (event?.key !== ' ' && event?.key !== 'ArrowUp') return;
     event.preventDefault();
-    setIsJumping(!gameOver && !isPaused && bool);
+    setIsJumping(!gameOver && bool);
   };
 
   useEffect(() => {
@@ -39,27 +37,27 @@ const Player = ({ setPlayer, acceleration }) => {
   useFrame(({ clock }, delta) => {
     if (!isPlaying) return velocity = 0;
 
-    if (isPlaying && !gameOver && !isPaused) {
+    if (isPlaying && !gameOver && !isPaused && acceleration.current < 0.13) {
       acceleration.current = (acceleration.current + clock.getElapsedTime() / 1000);
     }
 
-    if (isJumping && runner.current.position.y == 0.0) {
-      velocity = 20;
+    if (isJumping && player.current.position.y == 0.0) {
+      velocity = 17;
     }
 
     const jumpAcceleration = -85 * delta;
-    runner.current.position.y += delta * (velocity + jumpAcceleration * 0.5);
-    runner.current.position.y = Math.max(runner.current.position.y, 0.0);
+    player.current.position.y += delta * (velocity + jumpAcceleration * 0.5);
+    player.current.position.y = Math.max(player.current.position.y, 0.0);
     velocity = Math.max(velocity + jumpAcceleration, -100);
 
     isPaused || !isPlaying ? clock.stop() : clock.start();
   });
 
   return (
-    <group ref={runner} position={[0, 0, -4]}>
-      <Timmy scale={0.8} position={[0, 0, 0]} isJumping={isJumping} />
+    <group ref={player} position={[0, 0, -4]}>
+      <Timmy scale={0.8} position={[0, 0.03, 0]} isJumping={isJumping} />
     </group>
   );
-};
+});
 
 export default Player;

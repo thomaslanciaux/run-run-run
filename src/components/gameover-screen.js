@@ -2,8 +2,7 @@ import { useGameContext } from '@/hooks/game-context';
 
 export default function GameoverScreen({ resetGame, score }) {
   const { gameOver } = useGameContext();
-
-  return gameOver ? (
+  return gameOver && (
     <div className="
       absolute top-0 left-0 h-full w-full grid gap-8 items-center p-4
       justify-center text-white z-10 bg-black/50 text-center
@@ -23,5 +22,5 @@ export default function GameoverScreen({ resetGame, score }) {
         RESTART
       </button>
     </div>
-  ) : null;
+  )
 };

@@ -1,8 +1,8 @@
 import { useGameContext } from '@/hooks/game-context';
 
 export default function PausedScreen() {
-  const { isPaused, gameOver, setIsPaused } = useGameContext(); 
-  return isPaused && !gameOver ? (
+  const { isPaused, setIsPaused, gameOver } = useGameContext(); 
+  return isPaused && !gameOver && (
     <div className="
       absolute top-0 left-0 h-full w-full grid gap-8 items-center p-4
       justify-center text-white z-10 bg-black/50
@@ -15,5 +15,5 @@ export default function PausedScreen() {
         CONTINUE
       </button>
     </div>
-  ) : null;
+  );
 };

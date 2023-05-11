@@ -1,17 +1,16 @@
 import { useGameContext } from '@/hooks/game-context';
-import { useRef, useMemo } from 'react';
+import { useRef } from 'react';
 import { useFrame } from '@react-three/fiber';
 import constants from '@/libs/constants';
 import Building from '@/components/models/building';
-import { getColor } from '@/libs/utils';
-import * as THREE from 'three';
+import { Bakery } from '@/components/models/bakery';
+import { Bar } from '@/components/models/bar';
+import { Cinema } from '@/components/models/cinema';
 
 const { OFFSET } = constants;
 
-const MovingBuilding = (props) => {
+const MovingBuilding = ({ acceleration, position, type, color }) => {
   const ref = useRef();
-  const { acceleration } = props;
-  const color = useMemo(() => new THREE.Color(props.color), [props.color]);
   const { gameOver, isPaused, isPlaying } = useGameContext();
 
   useFrame((_state, delta) => {
@@ -19,20 +18,23 @@ const MovingBuilding = (props) => {
 
     ref.current.position.z -= (delta * 15) + acceleration.current;
 
-    if (ref.current.position.z <= -OFFSET) {
-      ref.current.position.z = OFFSET;
-      ref.current.children[0].children[0].material.color = color.set(getColor());
-    }
+    if (ref.current.position.z <= -OFFSET) ref.current.position.z = OFFSET;
   });
 
   return (
-    <group ref={ref} position={props.position}>
-      <Building
-        scale={1}
-        position={[12, -0.1, 0]}
-        rotation-y={-Math.PI / 2}
-        color={color}
-      />
+    <group ref={ref} position={position}>
+      {type === 0 && (
+        <Bakery scale={0.5} rotation-y={-Math.PI / 2} position={[0, 0, 0]}/>
+      )}
+      {type === 1 && (
+        <Building scale={0.9} rotation-y={-Math.PI / 2} color={color}/>
+      )}
+      {type === 2 && (
+        <Bar scale={0.025} rotation-y={Math.PI / 2} position={[3, 1, 0]} />
+      )}
+      {type === 3 && (
+        <Cinema scale={0.53} rotation-y={-Math.PI / 2} position={[-0.5, 0, 0]} />
+      )}
     </group>
   );
 };
