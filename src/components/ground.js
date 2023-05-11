@@ -41,7 +41,7 @@ const Ground = ({ acceleration }) => {
       >
         <boxGeometry args={[35, 120, 0.3, 1, 1]} />
         <meshStandardMaterial
-          color="#444444"
+          color="#555555"
           roughness={1}
           normalMap={pavementNormalMap}
           normalScale={new Vector2(10, 10)}
