@@ -37,7 +37,7 @@ const Player = forwardRef(function Player({ acceleration }, player) {
   useFrame(({ clock }, delta) => {
     if (!isPlaying) return velocity = 0;
 
-    if (isPlaying && !gameOver && !isPaused && acceleration.current < 0.13) {
+    if (isPlaying && !gameOver && !isPaused && acceleration.current < 0.2) {
       acceleration.current = (acceleration.current + clock.getElapsedTime() / 1000);
     }
 
@@ -54,7 +54,7 @@ const Player = forwardRef(function Player({ acceleration }, player) {
   });
 
   return (
-    <group ref={player} position={[0, 0, -4]}>
+    <group ref={player} position={[0, -0.1, -4]}>
       <Timmy scale={0.8} position={[0, 0.03, 0]} isJumping={isJumping} />
     </group>
   );

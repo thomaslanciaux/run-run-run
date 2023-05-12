@@ -32,24 +32,24 @@ const World = ({ acceleration }) => {
         shadow-bias={-0.0001}
         intensity={0.3}
       />
-      <group position={[16, 0, 24]}>
-          <BakeryInstances>
-          <BarInstances>
-          <CinemaInstances>
-            {floorItems.map(({ positionZ, color, type }, index) => (
-              <MovingBuilding
-                key={index}
-                scale={1}
-                position={[0, 0, positionZ]}
-                rotation-y={-Math.PI / 2}
-                color={color}
-                type={type}
-                acceleration={acceleration}
-              />
-            ))}
-          </CinemaInstances>
-          </BarInstances>
-          </BakeryInstances>
+      <group position={[12, -0.1, 24]} scale={1.2}>
+        <BakeryInstances>
+        <BarInstances>
+        <CinemaInstances>
+          {floorItems.map(({ positionZ, color, type }, index) => (
+            <MovingBuilding
+              key={index}
+              scale={1}
+              position={[0, 0, positionZ]}
+              rotation-y={-Math.PI / 2}
+              color={color}
+              type={type}
+              acceleration={acceleration}
+            />
+          ))}
+        </CinemaInstances>
+        </BarInstances>
+        </BakeryInstances>
       </group>
       <Ground acceleration={acceleration} />
       <Sky />
