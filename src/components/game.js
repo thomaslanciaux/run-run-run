@@ -53,6 +53,9 @@ const Game = () => {
       <GameoverScreen resetGame={resetGame} score={score} />
       <StartScreen resetGame={resetGame} player={player} />
       <Canvas
+        gl={{
+          antialiased: false,
+        }}
         shadows
         camera={{
           position: [-12, 3, -4],
@@ -60,6 +63,7 @@ const Game = () => {
           far: 300
         }}
       >
+        <AdaptiveDpr />
         <Suspense fallback={null}>
           <Player acceleration={acceleration} ref={player} />
           <CheckColliders player={player} />
