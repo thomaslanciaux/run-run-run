@@ -24,13 +24,13 @@ const MovingBuilding = ({ acceleration, position, type, color }) => {
   return (
     <group ref={ref} position={position}>
       {type === 0 && (
-        <Bakery scale={0.5} rotation-y={-Math.PI / 2} position={[0, 0, 0]}/>
+        <Bakery scale={0.5} rotation-y={-Math.PI / 2} position={[0.5, 0, 0]}/>
       )}
       {type === 1 && (
         <Building scale={0.9} rotation-y={-Math.PI / 2} color={color}/>
       )}
       {type === 2 && (
-        <Bar scale={0.025} rotation-y={Math.PI / 2} position={[3, 1, 0]} />
+        <Bar scale={0.025} rotation-y={Math.PI / 2} position={[2, 1, 0]} />
       )}
       {type === 3 && (
         <Cinema scale={0.53} rotation-y={-Math.PI / 2} position={[-0.5, 0, 0]} />

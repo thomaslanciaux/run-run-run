@@ -81,19 +81,18 @@ const Game = () => {
       <GameoverScreen resetGame={resetGame} score={score} />
       <StartScreen resetGame={resetGame} player={player} />
       <Canvas
+        gl={{
+          antialiased: false,
+        }}
         shadows
         camera={{
-          position: [-12, 3, -6],
+          position: [-12, 3, -4],
           fov: 50,
           far: 300,
         }}
       >
+        <AdaptiveDpr />
         <Suspense fallback={null}>
-          {/*
-            <AdaptiveDpr pixelated />
-            <AdaptiveEvents />
-            <Stats />
-          */}
           <Player acceleration={acceleration} ref={player} />
           <CheckColliders player={player} />
           <Colliders obstacles={obstacles} acceleration={acceleration} />

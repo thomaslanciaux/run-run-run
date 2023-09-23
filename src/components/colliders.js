@@ -18,10 +18,10 @@ const Colliders = ({ acceleration, obstacles }) => {
                 acceleration={acceleration}
               >
                 {type === 0 && (
-                  <Hydrant scale={0.3} position={[0, -0.5, 0]} />
+                  <Hydrant scale={0.3} position={[0, -0.6, 0]} />
                 )}
                 {type === 1 && (
-                  <Bin scale={0.0065} position={[0, -0.5, 0]} />
+                  <Bin scale={0.0065} position={[0, -0.6, 0]} />
                 )}
                 {type === 2 && (
                   <Mailbox
