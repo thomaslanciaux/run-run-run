@@ -10,8 +10,12 @@
     "static": "next build && next export"
   },
   "dependencies": {
+    "@capacitor/android": "^5.0.3",
+    "@capacitor/core": "^5.0.3",
+    "@capacitor/ios": "^5.0.3",
     "@react-three/drei": "^9.68.2",
     "@react-three/fiber": "^8.13.0",
+    "capacitor-suppress-longpress-gesture": "^0.0.6",
     "eslint": "8.40.0",
     "eslint-config-next": "13.4.1",
     "next": "^13.4.1",
