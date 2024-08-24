@@ -18,5 +18,3 @@ yarn build
 ```
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-Open [http://localhost:3000/?debug=true](http://localhost:3000/?debug=true) with your browser to see the stats.
